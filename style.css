@@ -1,0 +1,2420 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #FFFDF9;
+  color: #222;
+}
+
+/* Top navigation bar */
+.top-nav {
+    height: 95px; /* smaller height */
+  padding: 0 20px; /* keep some side padding */
+  display: flex;
+  align-items: center; /* vertically center content */
+  justify-content: space-between;
+  background-color: #006156; /* keep your background */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.nav-right {
+    display: flex; /* Make it a flex container */
+    align-items: center; /* Vertically align its children (nav, cart-icon, hamburger) */
+    gap: 25px; /* Add space between the nav menu and the cart/hamburger icons */
+}
+
+/* Logo */
+.logo img {
+  height: 80px; /* scale logo to fit navbar */
+  width: auto;
+}
+
+.brand-name {
+  font-size: 18px;
+  font-weight: bold;
+  color: #222;
+  font-family: 'Poppins', sans-serif;
+  line-height: 1;
+  position: relative;
+  top: -28px; /* 👈 tweak this value as needed */
+}
+
+/* Nav menu */
+nav ul.menu {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  gap: 25px;
+  align-items: center; /* vertically center items */
+}
+
+nav ul.menu > li {
+  position: relative;
+}
+
+nav ul.menu > li > a {
+  text-decoration: none;
+  color: #222;
+  font-weight: 600;
+  padding: 8px 5px;
+  cursor: pointer;
+}
+
+nav ul.menu > li:hover > a {
+  color: #ff7b00; /* coral highlight */
+  border-bottom: 2px solid #ff7b00;
+}
+
+/* Dropdown submenu */
+nav ul.submenu {
+  list-style: none;
+  padding-left: 0;
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #FFFDF9;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+  padding: 10px 0;
+  border-radius: 6px;
+  min-width: 140px;
+  z-index: 1000;
+}
+
+nav ul.submenu li a {
+  display: block;
+  padding: 8px 20px;
+  color: #222;
+  text-decoration: none;
+}
+
+nav ul.submenu li a:hover {
+  background-color: #A8E6CF;
+  color: #222;
+}
+
+nav ul.menu > li.dropdown:hover > ul.submenu {
+  display: block;
+}
+
+/* Hamburger icon (hidden on desktop) */
+.hamburger {
+    display: none;
+}
+
+/* Cart icon (desktop) - Targets the DIV */
+.cart-icon {
+    position: relative; /* Keep for the cart count bubble positioning */
+    cursor: pointer;
+    display: flex; /* Use flex to center the SVG within the div */
+    align-items: center;
+    justify-content: center;
+    /* You might want a slight padding or min-size if it looks too small/cramped */
+    padding: 0px; /* Adjust as needed, was 0 in your old li style */
+    height: 28px; /* Match SVG height or give clickable area */
+    width: 28px; /* Match SVG width or give clickable area */
+}
+
+/* Target the SVG directly inside the .cart-icon div */
+.cart-icon svg {
+    width: 28px; /* Ensure SVG is this size */
+    height: 28px; /* Ensure SVG is this size */
+    /* You can remove vertical-align: middle; as flexbox will handle alignment */
+}
+
+/* Target the cart count bubble */
+.cart-count {
+    position: absolute;
+    /* These are the desktop position values you had. Adjust them if your desktop view needs tweaking. */
+    top: -6px;
+    right: -12px;
+
+    background: red;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 3px 4px 4px 7px; /* Adjusted padding for better fit */
+    border-radius: 50%; /* Makes it a circle */
+    pointer-events: none; /* Allows clicks to pass through to the cart icon */
+    z-index: 10; /* Ensures it's on top of other elements */
+    min-width: 12px; /* Prevents it from collapsing too much for single digits */
+    text-align: center; /* Centers the number horizontally */
+    line-height: 12px; /* Vertically centers the number */
+    display: inline-block; /* Helps with min-width and line-height centering */
+}
+
+.earth-blends {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #006156; /* same green as your nav bubble text */
+  margin: 20px 0;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  user-select: none;
+}
+
+.earth-blends:hover {
+  color: #009e7f; /* a lighter green on hover */
+}
+
+/* Hide elements with 'mobile-only-title' class by default (desktop) */
+.mobile-only-title {
+    display: none;
+}
+
+.intro-section {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  margin-top: 0;
+  padding: 50px 0;
+  gap: 30px; /* space between left and right */
+}
+
+.intro-bubble {
+  background-color: #eee;
+  padding: 40px 30px;
+  border-radius: 30px;
+  width: 35%;
+  margin-left: 5%;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.intro-bubble h1 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 2.8rem;
+  line-height: 1.2;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #006156;
+  transition: color 0.3s ease;
+  cursor: default;
+}
+
+.intro-bubble p {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #444;
+  line-height: 1.6;
+  transition: color 0.3s ease;
+}
+.intro-bubble p:hover {
+  color: #ff7b00;
+}
+
+/* Hover color change for both */
+.intro-bubble:hover h1,
+.intro-bubble:hover p {
+  color: #ff7b00;  /* coral orange */
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.intro-bubble:hover h1 {
+  animation: pulse 2s infinite;
+}
+
+
+.intro-gallery, .slider-container {
+  width: 55%;               /* bigger width for photos */
+  margin-left: auto;
+  margin-right: 5%;
+  overflow: hidden;
+  border-radius: 30px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  height: 300px;            /* fixed height */
+  position: relative;
+}
+
+.slider {
+  display: flex;
+  width: 100%;              /* for 3 images */
+  height: auto;
+  animation: slide 15s infinite;
+  transition: transform 0.5s ease-in-out;
+}
+
+.slider img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;        /* fill container nicely */
+  flex-shrink: 0;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.intro-gallery:hover .slider {
+  animation-play-state: paused;
+}
+
+@keyframes slide {
+  0%, 33% {
+    transform: translateX(0);
+  }
+  36%, 66% {
+    transform: translateX(-100%);
+  }
+  69%, 100% {
+    transform: translateX(-200%);
+  }
+}
+
+.featured-section h2 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 2.5rem;
+  color: #00796B;      /* same green as welcome message */
+  margin-bottom: 20px;
+  text-align: center;
+  transition: color 0.3s ease;
+  cursor: default;
+}
+
+.featured-section h2:hover {
+  color: #ff7b00;      /* coral orange on hover */
+  text-shadow: 0 0 8px #ff7b00;
+}
+
+.featured-section {
+  padding: 2rem 5%;
+  text-align: center;
+}
+
+.featured-heading {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 2.5rem;
+  color: #006156; /* same green as nav */
+  margin-bottom: 1.5rem;
+  transition: color 0.3s ease;
+  cursor: default;
+}
+
+.featured-heading:hover {
+  color: #ff7b00; /* coral orange glow */
+  text-shadow: 0 0 8px #ff7b00;
+}
+
+.featured-items {
+  display: flex;
+  justify-content: space-between; /* spaces out the cards evenly */
+  gap: 30px; /* extra spacing between cards */
+  margin-top: 20px; /* space above the row */
+}
+
+.featured-card {
+  flex: 1 1 30%; /* each card takes about 30% width */
+  text-align: center;
+  border-radius: 15px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.featured-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 15px;
+}
+
+.featured-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15); /* subtle shadow */
+}
+
+.featured-card p {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #00796B;
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+.featured-card:hover p {
+  color: #ff7b00;
+}
+
+.seamoss-section {
+  padding: 2rem 5%;
+  background-color: #FFFDF9;
+  text-align: center;
+}
+
+.seamoss-heading {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 2.5rem;
+  color: #00796B;
+  margin-bottom: 1.5rem;
+  transition: color 0.3s ease;
+  cursor: default;
+}
+
+.seamoss-heading:hover {
+  color: #ff7b00;
+  text-shadow: 0 0 8px #ff7b00;
+}
+
+.seamoss-items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.seamoss-card {
+  flex: 1 1 calc(45% - 20px); /* smaller width */
+  max-width: 220px;           /* limits card size */
+  text-align: center;
+  border-radius: 15px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: default;
+  background: white;
+  overflow: hidden;
+  margin: auto; /* center the smaller cards */
+}
+
+.seamoss-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 15px;
+  transition: transform 0.3s ease;
+}
+
+.seamoss-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+}
+
+.seamoss-card:hover img {
+  transform: scale(1.05);
+}
+
+.seamoss-card p {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #00796B;
+  margin: 0.8rem 0 1rem;
+  transition: color 0.3s ease;
+}
+
+.seamoss-card:hover p {
+  color: #ff7b00;
+}
+
+.why-section {
+  background-color: #eee;
+  padding: 40px 30px;
+  border-radius: 30px;
+  width: 60%;
+  margin: 50px auto;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.why-section h3 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #00796B;
+  margin-bottom: 20px;
+  transition: color 0.3s ease;
+  cursor: default;
+}
+
+.why-section:hover h3 {
+  color: #ff7b00;
+  text-shadow: 0 0 8px #ff7b00;
+}
+
+.why-section ul {
+  list-style: none;
+  padding: 0;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #444;
+  line-height: 1.6;
+}
+
+.why-section li {
+  margin-bottom: 10px;
+}
+
+.shop-now-btn-wrapper {
+    text-align: center; /* Centers the button horizontally */
+    padding: 50px 0;    /* Adds 50px space above and below the button */
+    width: 100%;        /* Ensures the wrapper spans full width for effective centering */
+    box-sizing: border-box; /* Includes padding in the element's total width/height */
+}
+
+.shop-now-btn {
+    padding: 12px 28px;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: bold;
+    background-color: #00796B;
+    color: white;
+    border: 2px solid #00796B;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s, color 0.3s;
+}
+
+.shop-now-btn:hover {
+    background-color: white;
+    color: #00796B;
+    transform: scale(1.05);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+}
+
+.site-footer {
+  background-color: #006156; /* same as nav */
+  color: #1d1d1d;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1px 3%;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1rem;
+  flex-wrap: wrap;
+}
+
+.footer-left, .footer-center, .footer-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Logo and brand text */
+.footer-logo {
+  height: 80px;
+  width: auto;
+}
+
+.footer-brand {
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+/* Center social links */
+.footer-center {
+  gap: 15px;
+  font-weight: 600;
+}
+
+.footer-link {
+  color: #1d1d1d;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: color 0.3s ease;
+}
+
+.footer-link:hover {
+  color: #ff7b00; /* coral orange */
+}
+
+.footer-icon {
+  height: 18px;
+  width: 18px;
+}
+
+/* Divider between links */
+.divider {
+  color: #1d1d1d;
+  margin: 0 8px;
+}
+
+/* Right side contact */
+.footer-right {
+  flex-direction: column;
+  text-align: right;
+  font-weight: 600;
+}
+
+.footer-icon-small {
+  height: 16px;
+  width: 16px;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+body {
+  opacity: 0;
+  animation: fadeIn 1s ease-in forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-in-section {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  will-change: opacity, transform;
+}
+
+.fade-in-section.visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Earth blends page start here */
+
+/* Drinks layout */
+.drinks-layout {
+    display: flex;
+    gap: 30px;
+    padding: 2rem 5%;
+    background-color: #FFFDF9; /* keep the page background */
+}
+
+/* Left side categories */
+.drink-categories {
+    width: 100%;
+    max-width: 1200px;
+    margin: 12px auto;
+    padding: 10px 16px;
+    box-sizing: border-box;
+    overflow-x: auto;
+}
+
+.drink-categories ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+}
+
+.drink-categories li {
+    padding: 6px 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: color 0.3s ease, background-color 0.3s ease;
+    border-radius: 8px;
+    white-space: nowrap;
+}
+
+/* Hover and active category style */
+.drink-categories li:hover,
+.drink-categories li.active {
+    color: #ff7b00;
+    background-color: #FFF3E0;
+}
+
+/* Drinks grid */
+.drinks-grid {
+    flex: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    align-items: stretch; /* Ensures all cards in a row have the same height */
+    gap: 25px;
+    background-color: transparent;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 6px 18px rgba(0, 97, 86, 0.3);
+    transition: transform 0.8s ease, opacity 0.6s ease; /* Your existing transition */
+    opacity: 1; /* Your existing opacity */
+}
+
+/* Individual drink card style */
+.drink-card {
+    background: #FFFDF9; /* light card background */
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column; /* This is crucial for vertical alignment */
+    align-items: center; /* Centers content horizontally within the card */
+    padding: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.drink-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 25px rgba(255, 123, 0, 0.4);
+}
+
+/* New style for the content wrapper inside each card */
+.drink-card-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    flex-grow: 1; /* This is the magic! */
+    width: 100%;
+    padding-bottom: 10px;
+}
+
+/* Drink image */
+.drink-card img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 15px;
+    margin-bottom: 12px;
+}
+
+.drink-card .price {
+    align-self: flex-start; /* Keeps price aligned to the left of its content area */
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.4rem;
+    color: #006156;
+    margin: -2px 0 -10px 4px; /* Adjust if needed after adding wrapper */
+}
+
+.drink-card .price .dollar {
+    font-weight: bold;
+}
+
+.drink-card .price .dollar sup {
+    font-size: 0.7rem;
+    vertical-align: top;
+    margin-left: 1px;
+}
+
+/* Drink name */
+.drink-card .drink-name {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: #006156;
+    margin-bottom: 8px; /* You might adjust this or rely on padding from .drink-card-content */
+    text-align: center;
+}
+
+/* Ingredients text */
+.drink-card .ingredients {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #444;
+    margin-bottom: 0; /* REMOVED or set to 0 - space is now handled by .drink-card-content's padding */
+    text-align: center;
+    padding: 0 5px;
+    flex-grow: 1; /* Allows this to take up remaining space */
+    display: flex; /* Make it a flex container to align its own content if needed, though not strictly necessary here */
+    flex-direction: column; /* Keep its own content aligned vertically if it grows */
+    justify-content: flex-end; /* Pushes the ingredients text to the bottom of its allocated space if its content is short */
+}
+
+/* Add to cart button */
+.drink-card button.add-to-cart {
+    background-color: #ff7b00;
+    border: none;
+    color: white;
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 10px 20px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    margin-top: auto; /* This now works correctly because .drink-card-content flex-grows */
+}
+
+.drink-card button.add-to-cart:hover {
+    background-color: #ff7700;
+}
+
+/* Keyframe for existing animation - ensure this is outside any @media query */
+@keyframes swipeLeft {
+    0% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+
+/* Cart item styles */
+
+/* Cart item name and quantity */
+.cart-item .item-info {
+  flex: 1;
+}
+
+.cart-item .item-qty {
+  margin-left: 15px;
+  font-weight: 700;
+  color: #ff7b00;
+}
+
+/* Cart total */
+.cart-total {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 1.3rem;
+  text-align: right;
+  color: #006156;
+  margin-top: 10px;
+}
+
+/* --- Global Body & HTML Resets (Place at the very top of style.css) --- */
+html, body {
+    height: 100%; /* Makes sure html and body span the full viewport */
+    margin: 0;
+    padding: 0;
+}
+
+/* --- Page Wrapper Flexbox Setup --- */
+#page-wrapper {
+    display: flex;         /* THIS IS KEY */
+    flex-direction: column; /* THIS IS KEY */
+    min-height: 100vh;     /* THIS IS KEY */
+    
+    /* Keep your existing properties */
+    position: relative;
+    transition: filter 0.3s ease; 
+}
+
+/* --- Main Content Area Flex Growth (UPDATE THIS RULE) --- */
+main { 
+    flex-grow: 1;           /* Keep this */
+    display: flex;         /* ADD THIS: Forces 'main' to be a flex container */
+    flex-direction: column; /* ADD THIS: Ensures content within 'main' stacks correctly */
+}
+
+/* Overlay for dimming */
+#overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: rgba(0,0,0,0.4);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 999; /* on top of page content but below cart */
+}
+
+/* When cart is active */
+.cart.active {
+  right: 0;
+}
+
+/* When overlay is active */
+#overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Dim the main content when cart is active */
+.page-dim {
+  filter: brightness(0.6);
+  pointer-events: none; /* disable clicks on main content */
+}
+
+.cart-item {
+  background-color: #e0e0e0; /* light gray bubble */
+  border-radius: 12px;
+  padding: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: Arial, sans-serif;
+}
+
+.cart-item img {
+  width: 50px;
+  height: 50px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.cart-item-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.cart-item-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.cart-item-name {
+  font-weight: bold;
+  flex-grow: 1;
+}
+
+.cart-item-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.remove-btn {
+  background-color: transparent;
+  border: none;
+  color: #888;
+  font-size: 12px;
+  cursor: pointer;
+  margin-bottom: 6px;
+  padding: 0;
+  text-decoration: underline;
+}
+.remove-btn:hover {
+  color: #555;
+}
+
+.cart {
+  position: fixed;
+  top: 0;
+  right: -380px; /* hidden off-screen */
+  width: 320px;
+  height: calc(100vh - 40px);
+  background-color: #FFFDF9;
+  box-shadow: -4px 0 10px rgba(0,0,0,0.3);
+  padding: 20px;
+  transition: right 0.3s ease;
+  z-index: 1000;
+
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  padding-bottom: 60px;
+
+}
+
+.cart.active {
+  right: 0;
+}
+
+/* Cart header */
+.cart h3 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 1.8rem;
+  color: #00796B;
+  text-align: center;
+  margin: 0 0 20px 0;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  user-select: none;
+}
+
+.cart:hover h3 {
+  color: #ff7b00;
+  animation: pulse 2s infinite;
+}
+
+/* Checkout button */
+.checkout-btn {
+  margin-top: auto;
+  padding: 12px 20px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: #00796B;
+  background-color: #eee;
+  border: 2px solid #00796B;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  text-align: center;
+  user-select: none;
+  text-decoration: none;
+}
+
+.checkout-btn:hover:not(.is-disabled) {
+  background-color: #ff7b00; /* Keep your original hover background color */
+  color: white; /* Keep your original hover text color */
+  animation: pulse 2s infinite; /* Keep your original pulse animation */
+}
+
+.checkout-btn.is-disabled {
+  background-color: #c8c8c8; /* Keep your original disabled background color */
+  color: #666666; /* Keep your original disabled text color */
+  border: 2px solid #999999; /* Keep your original disabled border */
+  cursor: not-allowed; /* Keep your original disabled cursor */
+  opacity: 0.8; /* Keep your original disabled opacity */
+  pointer-events: none; /* CRUCIAL: Prevents click events on the <a> tag */
+  transform: none; /* Ensures no hover/active transforms apply when disabled */
+  box-shadow: none; /* Ensures no hover/active box-shadows apply when disabled */
+  animation: none; /* Ensures the pulse animation is removed when disabled */
+}
+
+/* Pulse animation */
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+
+/* Book an event page styles */
+
+.booking-form {
+  max-width: 750px;
+  margin: 0 auto 60px; /* adds 60px bottom margin */
+}
+
+.booking-form-container {
+  max-width: 750px; /* A bit wider to accommodate the bubble padding */
+  margin: 40px auto;
+  padding: 1px;
+  font-family: 'Segoe UI', sans-serif; /* Matches your body font */
+}
+
+.form-intro {
+    font-family: 'Open Sans', sans-serif; /* Matches your paragraph font */
+    text-align: center;
+    margin-bottom: 40px;
+    color: #444;
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+/* This styles the <fieldset> to look like the '.intro-bubble' 
+  on your homepage, as you requested.
+*/
+.booking-form fieldset {
+  background-color: #eee; /* The gray bubble background */
+  border-radius: 30px;    /* The rounded corners */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* The subtle lift */
+  padding: 30px 40px;     /* Generous internal padding */
+  margin-bottom: 30px;
+  border: none;           /* Remove the default fieldset border */
+}
+
+/* This styles the <legend> to be the "orange glow color" 
+  and look like a title for each bubble.
+*/
+.booking-form legend {
+  font-family: 'Poppins', sans-serif; /* Matches your heading font */
+  color: #ff7b00;                     /* Use the orange accent color */
+  font-weight: 700;
+  font-size: 1.5rem;
+  padding: 0 10px;
+  margin-bottom: 4px; /* Space between legend and first input */
+}
+
+.form-group label {
+  font-family: 'Open Sans', sans-serif; /* Matches your paragraph font */
+  display: block;
+  margin-bottom: 8px;
+  margin-top: 10px;
+  font-weight: 600;
+  color: #444;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px; /* A slight rounding for inputs */
+  box-sizing: border-box; 
+  background-color: #FFFDF9; /* Match your site's main background */
+  font-family: 'Pacifico', sans-serif;
+  color: #222;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+/* Use your orange accent color for the focus highlight */
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #ff7b00;
+    box-shadow: 0 0 5px rgba(255, 123, 0, 0.5);
+    outline: none;
+}
+
+.form-row {
+  display: flex;
+  gap: 20px;
+}
+
+.form-row .form-group {
+  flex: 1;
+}
+
+/* Drink entry section for a clean grid layout (Updated) */
+.drink-entry {
+  display: grid;
+  /* Define three columns: two flexible for content, one 'auto' for the remove button */
+  grid-template-columns: 1fr 1fr auto;
+  /* Define named areas for easier placement across two rows */
+  grid-template-areas:
+    "drink-title drink-name remove-btn"
+    "drink-ounce drink-quantity remove-btn"; /* The remove-btn spans both rows */
+  gap: 15px; /* Spacing between grid items */
+  align-items: flex-start; /* Aligns content to the start of its grid area */
+  padding: 15px;
+  border-radius: 15px;
+  margin-bottom: 15px;
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+/* Assign each form-group and the remove button to its named grid area */
+.drink-entry .form-group:nth-child(1) { /* Drink Title/Category */
+  grid-area: drink-title;
+}
+
+.drink-entry .form-group:nth-child(2) { /* Name of Drink */
+  grid-area: drink-name;
+}
+
+.drink-entry .form-group:nth-child(3) { /* Ounce/Gallon */
+  grid-area: drink-ounce;
+}
+
+.drink-entry .form-group:nth-child(4) { /* How Many */
+  grid-area: drink-quantity;
+}
+
+.drink-entry .remove-drink-btn { /* The remove button */
+  grid-area: remove-btn;
+  /* Ensure the remove button is vertically centered in its combined area */
+  align-self: center;
+}
+
+
+
+/* Main "Get a Quote" button */
+.submit-btn {
+  display: block;
+  width: 300px;
+  margin: 0 auto; /* centers it horizontally */
+  padding: 15px;
+  font-size: 1.2em;
+  font-weight: bold;
+  font-family: 'Poppins', sans-serif;
+  background-color: #00796B; /* Your primary green */
+  color: white;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.submit-btn:hover {
+  background-color: #ff7b00; /* Your orange accent on hover */
+  transform: translateY(-2px);
+}
+
+/* "Add" and "Remove" buttons */
+.add-drink-btn,
+.remove-drink-btn {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.add-drink-btn {
+  background-color: #006156; /* Your darker nav green */
+  color: white;
+  margin-top: -10px;
+}
+
+.add-drink-btn:hover {
+  background-color: #009e7f; /* Lighter green from your :hover example */
+}
+
+.remove-drink-btn {
+    background-color: #e74c3c; /* A tasteful red for removal */
+    color: white;
+    height: 47px; /* Align with inputs */
+    line-height: 47px; /* Vertically center the 'X' if needed */
+    padding: 0 15px;
+}
+
+.remove-drink-btn:hover {
+    background-color: #c0392b;
+}
+
+
+/* --- Our Story Section Styles for aboutus.html --- */
+
+.story-section {
+    display: flex;
+    justify-content: center; /* Centers the bubble horizontally */
+    align-items: center;     /* Centers the bubble vertically (if section has enough height) */
+    min-height: 80vh;        /* Ensures enough height for the bubble to sit in, adjust as needed */
+    padding: 40px 20px;      /* Adds some padding around the section */
+    background-color: #f8f8f8; /* Light background for the overall section */
+}
+
+.story-bubble {
+    background-color: #d3d3d3; /* Gray background for the bubble */
+    border-radius: 25px;       /* Rounded corners for the bubble effect */
+    padding: 30px 40px;        /* Padding inside the bubble */
+    max-width: 800px;          /* Max width for readability */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    text-align: center;        /* Center the title and content inside */
+    margin: 20px;              /* Space around the bubble itself */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for potential hover */
+}
+
+/* Optional: A subtle hover effect for the entire bubble, if desired */
+.story-bubble:hover {
+    transform: translateY(-5px); /* Lift slightly on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Deeper shadow on hover */
+}
+
+.story-title {
+    font-family: 'Pacifico'; /* Replace with your desired font */
+    font-size: 3em; /* Adjust font size as per your design */
+    color: #ff7b00;    /* Darker initial color for the title text */
+    margin-bottom: 25px; /* Space below the title */
+    cursor: default;     /* Indicate it's interactive */
+    /* Remove padding and border-radius as background is no longer the target for hover */
+    display: inline-block; /* Still good for applying transform effects directly to text */
+    transition: color 0.3s ease, transform 0.2s ease; /* Smooth transition for color and transform */
+}
+
+.story-content p {
+    font-family: 'Your Body Font', sans-serif; /* Replace with your desired font */
+    font-size: 1.4em;      /* Slightly larger font for readability */
+    line-height: 1.6;      /* Good line spacing */
+    color: #006156;           /* Medium gray for body text */
+    margin-bottom: 15px;   /* Space between paragraphs */
+    text-align: center;      /* Keep content paragraphs left-aligned for readability */
+    font-weight: bold;
+}
+
+
+/* --- Contact Us Section Styles (Similar to Our Story) --- */
+
+.contact-section {
+    display: flex;
+    justify-content: center; /* Centers the bubble horizontally */
+    align-items: center;     /* Centers the bubble vertically (if section has enough height) */
+    min-height: 80vh;        /* Ensures enough height for the bubble to sit in, adjust as needed */
+    padding: 40px 20px;      /* Adds some padding around the section */
+    background-color: #f8f8f8; /* Light background for the overall section */
+}
+
+.contact-bubble {
+    background-color: #d3d3d3; /* Gray background for the bubble */
+    border-radius: 25px;       /* Rounded corners for the bubble effect */
+    padding: 30px 40px;        /* Padding inside the bubble */
+    max-width: 700px;          /* Adjusted max-width for form content */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    text-align: center;        /* Center the title and content inside */
+    margin: 20px;              /* Space around the bubble itself */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for potential hover */
+}
+
+/* Optional: A subtle hover effect for the entire bubble, if desired */
+.contact-bubble:hover {
+    transform: translateY(-5px); /* Lift slightly on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Deeper shadow on hover */
+}
+
+.contact-title {
+    font-family: 'Pacifico'; /* Using Pacifico as per your About Us title */
+    font-size: 2.8em; /* Slightly smaller than story title for forms */
+    color: #ff7b00;    /* Your specified orange color for the title */
+    margin-bottom: 25px; /* Space below the title */
+    cursor: default;     /* The cursor doesn't change on hover for the title itself */
+    display: inline-block; /* Essential for transform effects */
+    transition: color 0.3s ease, transform 0.2s ease; /* Smooth transition for color and transform */
+}
+
+
+
+/* Styling for the introductory paragraph on the contact page */
+.contact-intro {
+    font-family: 'Pacifico'; /* Use your preferred body font */
+    font-size: 1.4em; /* Match font size from story-content p */
+    line-height: 1.6;
+    color: #006156;    /* Match text color from story-content p */
+    margin-bottom: 30px;
+    text-align: center; /* Centered text */
+    font-weight: bold;  /* Bold text */
+}
+
+/* Form Specific Styles */
+.contact-form {
+    text-align: left; /* Keep form labels/inputs aligned to the left for readability */
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1); /* Separator above form */
+}
+
+/* --- Form Specific Styles for signup.html (and other forms) --- */
+
+.form-group {
+    margin-bottom: 15px; /* Adds space between each label/input pair */
+}
+
+.form-group label {
+    display: block; /* Ensures the label sits above the input field */
+    margin-bottom: 5px; /* Space between the label and the input */
+    font-weight: bold;
+    color: #333; /* Dark gray for label text */
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"] {
+    width: 100%; /* Makes inputs fill the width of their container */
+    padding: 10px; /* Internal spacing within the input field */
+    border: 1px solid #ccc; /* Light gray border */
+    border-radius: 5px; /* Slightly rounded corners */
+    box-sizing: border-box; /* Ensures padding and border are included in the element's total width */
+    font-size: 1em; /* Standard text size */
+}
+
+.form-group input:focus {
+    border-color: #006156; /* Your brand's green for a focus highlight */
+    outline: none; /* Removes default browser outline */
+    box-shadow: 0 0 5px rgba(0, 97, 86, 0.2); /* Soft shadow on focus */
+}
+
+.submit-button {
+    background-color: #ff7b00; /* Your brand's orange color */
+    color: white; /* White text for readability */
+    padding: 12px 25px; /* Spacing inside the button */
+    border: none; /* No border */
+    border-radius: 25px; /* Fully rounded button */
+    font-size: 1.1em; /* Slightly larger text */
+    font-weight: bold;
+    cursor: pointer; /* Indicates it's clickable */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth hover effect */
+    margin-top: 20px; /* Space above the button */
+    width: auto; /* Button sizes naturally to its content */
+    display: inline-block; /* Allows it to be centered with text-align on its parent */
+}
+
+.submit-button:hover {
+    background-color: #e66a00; /* Darker orange on hover */
+    transform: translateY(-2px); /* Slight lift effect */
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block; /* Make labels appear above inputs */
+    font-weight: bold; /* Keep labels bold */
+    margin-bottom: 8px;
+    color: #333; /* Default label color */
+    font-size: 1em; /* Standard label font size */
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group textarea {
+    width: calc(100% - 20px); /* Adjust width to account for padding */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1em;
+    font-family: inherit; /* Inherit font from body for consistency */
+    box-sizing: border-box; /* Include padding/border in element's total width */
+}
+
+.form-group textarea {
+    resize: vertical; /* Allow vertical resizing only */
+    min-height: 100px;
+}
+
+.submit-btn {
+    background-color: #006156; /* Green submit button */
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 10px; /* Space above the button */
+}
+
+.submit-btn:hover {
+    background-color: #ff7b00; /* Darker green on hover */
+    transform: translateY(-2px); /* Slight lift */
+}
+
+/* Checkout Container */
+.checkout-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    padding: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+/* Section Headings */
+.checkout-section-heading {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 1.8rem;
+    color: #00796B;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+    width: 100%;
+}
+
+/* This replaces the 'Left Column (Order Summary & Order Total)' comment/section. */
+.order-summary-wrapper {
+    flex: 2; /* Maintains your column's flexible width */
+    min-width: 300px; /* Maintains your column's minimum width */
+    /* Add any other general styling for the whole right column here, like: */
+    /* background-color: #f9f9f9; */
+    /* border-radius: 8px; */
+    /* padding: 20px; */
+    /* box-shadow: 0 4px 8px rgba(0,0,0,0.1); */
+}
+
+/* This is the actual scrolling area for the order items */
+/* This now only handles the scrollable list of items. */
+#order-summary-column {
+    max-height: 400px; /* **Adjust this value.** This sets the scrollable height for the items. */
+    overflow-y: auto;  /* This enables vertical scrolling when content exceeds max-height */
+    padding-right: 15px; /* Adds space for the scrollbar, preventing content overlap */
+    margin-bottom: 20px; /* Space between the scrolling items and the fixed totals below */
+    /* Optional: Add a border to visually separate the items from the totals */
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px; /* Padding above the separator line */
+}
+
+/* Optional: Custom scrollbar styling for Webkit browsers (Chrome, Safari, Edge) */
+#order-summary-column::-webkit-scrollbar {
+    width: 8px;
+}
+
+#order-summary-column::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 4px;
+}
+
+#order-summary-column::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+}
+
+/* Styles for the non-scrolling totals section */
+#order-totals-summary {
+    padding-top: 15px; /* Space above the totals, after the scrolling items */
+    font-size: 1.1em; /* Make the totals slightly larger */
+}
+
+/* Styles for the individual total lines (subtotal, shipping, grand total) */
+/* These assume your JS will render them inside a div with class "order-total-summary" */
+#order-totals-summary .order-total-summary div {
+    display: flex;
+    justify-content: space-between; /* Aligns labels to left, values to right */
+    margin-bottom: 8px; /* Space between each total line */
+}
+
+#order-totals-summary .total-label {
+    font-weight: normal;
+}
+
+#order-totals-summary .total-value {
+    font-weight: bold;
+}
+
+#order-totals-summary .grand-total {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: var(--primary-color, #ff7b00); /* Use your primary brand color, or choose one */
+}
+
+/* Right Column (Customer, Shipping, Payment) */
+.customer-info-column {
+    flex: 3;
+    min-width: 300px;
+}
+
+/* Order Item Styling */
+.order-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px dashed #eee;
+}
+.order-item:last-child {
+    border-bottom: none;
+}
+.order-item img {
+    width: 70px;
+    height: 70px;
+    border-radius: 10px;
+    object-fit: cover;
+    margin-right: 15px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+.order-item-details {
+    flex-grow: 1;
+}
+.order-item-name {
+    font-weight: 600;
+    color: #222;
+    margin-bottom: 5px;
+}
+.order-item-qty-price {
+    font-size: 0.95em;
+    color: #666;
+}
+
+/* Order Total Summary */
+.order-total-summary div {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px dashed #eee;
+}
+.order-total-summary div:last-of-type {
+    border-bottom: none;
+}
+.order-total-summary .total-label {
+    font-weight: 600;
+    color: #444;
+}
+.order-total-summary .total-value {
+    font-weight: 700;
+    color: #00796B;
+    font-size: 1.1em;
+}
+.order-total-summary .grand-total {
+    font-size: 1.3em;
+    color: #ff7b00;
+}
+
+/* Form Styling */
+.form-group-checkout {
+    margin-bottom: 20px;
+}
+.form-group-checkout label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #444;
+}
+.form-group-checkout input,
+.form-group-checkout select,
+.form-group-checkout textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+    background-color: #FFFDF9;
+    font-family: 'Open Sans', sans-serif;
+    color: #222;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+.form-group-checkout input:focus,
+.form-group-checkout select:focus,
+.form-group-checkout textarea:focus {
+    border-color: #ff7b00;
+    box-shadow: 0 0 5px rgba(255, 123, 0, 0.5);
+    outline: none;
+}
+
+/* Place Order Button */
+.place-order-btn {
+    display: block;
+    width: 100%;
+    padding: 18px;
+    margin-top: 30px;
+    font-size: 1.3em;
+    font-weight: bold;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #ff7b00, #ff9933);
+    color: white;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+.place-order-btn:hover {
+    background: linear-gradient(135deg, #ff9933, #ff7b00);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+
+/* --- NEW: Checkout Modals Styling --- */
+
+/* Basic Modal Container */
+.custom-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent black background */
+    display: flex; /* Use flexbox to center content */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    z-index: 1000; /* Ensure it's on top of everything else, including overlay */
+    opacity: 0; /* Hidden by default */
+    visibility: hidden; /* Hidden by default */
+    transition: opacity 0.3s ease, visibility 0.3s ease; /* Smooth transition */
+}
+
+/* Active state for modal (shown by JS) */
+.custom-modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Modal Content Box */
+.custom-modal .modal-content {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    max-width: 500px; /* Max width for content */
+    width: 90%; /* Responsive width */
+    position: relative; /* For positioning close button */
+    transform: translateY(-20px); /* Slightly move up for enter animation */
+    transition: transform 0.3s ease;
+}
+
+.custom-modal.active .modal-content {
+    transform: translateY(0); /* Animate to original position */
+}
+
+.custom-modal h2 {
+    font-family: 'Poppins', sans-serif;
+    color: #4a2c20; /* Dark brown/maroon */
+    margin-bottom: 20px;
+    font-size: 1.8em;
+}
+
+.custom-modal p {
+    font-family: 'Open Sans', sans-serif;
+    color: #333;
+    margin-bottom: 25px;
+    line-height: 1.6;
+    font-size: 1.1em;
+}
+
+/* Modal Buttons Container */
+.custom-modal .modal-buttons {
+    display: flex;
+    flex-direction: column; /* Stack buttons vertically on small screens */
+    gap: 15px; /* Space between buttons */
+    margin-top: 20px;
+}
+
+/* Individual Modal Buttons */
+.modal-btn {
+    padding: 14px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.1em;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    width: 100%; /* Full width for stacked buttons */
+}
+
+.modal-btn.primary-btn {
+    background-color: #f7a100; /* Primary orange/yellow */
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(247, 161, 0, 0.3);
+}
+
+.modal-btn.primary-btn:hover {
+    background-color: #e09200; /* Darker orange on hover */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(247, 161, 0, 0.4);
+}
+
+.modal-btn.secondary-btn {
+    background-color: #f0f0f0; /* Light gray */
+    color: #4a2c20; /* Dark brown/maroon */
+    border: 1px solid #ddd;
+}
+
+.modal-btn.secondary-btn:hover {
+    background-color: #e5e5e5; /* Slightly darker gray on hover */
+    transform: translateY(-2px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Form Group for Guest Email Modal */
+.custom-modal .form-group-modal {
+    margin-bottom: 20px;
+}
+
+.custom-modal .form-group-modal label {
+    display: block;
+    margin-bottom: 8px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    color: #333;
+    text-align: left; /* Align label to left */
+}
+
+/* Accessible hidden label for screen readers */
+.custom-modal .form-group-modal .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+.custom-modal .form-group-modal input[type="email"] {
+    width: calc(100% - 20px); /* Adjust for padding */
+    padding: 12px 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1em;
+    color: #333;
+    box-sizing: border-box; /* Include padding in width */
+}
+
+.custom-modal .form-group-modal input[type="email"]:focus {
+    border-color: #f7a100;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(247, 161, 0, 0.2);
+}
+
+/* Close button for Guest Email Modal */
+.modal-close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 2em;
+    color: #888;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.modal-close-btn:hover {
+    color: #333;
+}
+
+
+
+/* --- Styling for the "Forgot password?" link on the login form --- */
+.forgot-password-link {
+    display: block; /* Ensures it takes up full width and allows text-align */
+    text-align: right; /* Aligns the link to the right */
+    margin-top: 10px; /* Space above the link, adjust as needed */
+    color: #FF5733; /* Your signature orange color */
+    text-decoration: none; /* Removes the default underline */
+    font-weight: 600; /* Makes the text bold */
+    font-size: 0.9em; /* Slightly smaller font size than regular text */
+    transition: text-decoration 0.2s ease; /* Smooth transition for hover effect */
+}
+
+.forgot-password-link:hover {
+    text-decoration: underline; /* Adds underline on hover for better UX */
+}
+
+
+/* --- Styling for the "Don't have an account?" prompt below the form --- */
+.signup-prompt {
+    text-align: center; /* Centers the text */
+    margin-top: 20px; /* Space above the prompt */
+    font-size: 0.95em; /* Slightly smaller font size */
+    color: #666; /* A softer color for the text */
+}
+
+.signup-prompt a {
+    color: #FF5733; /* Your signature orange color for the link */
+    font-weight: 600; /* Makes the link text bold */
+    text-decoration: none; /* Removes default underline */
+    transition: text-decoration 0.2s ease; /* Smooth transition for hover effect */
+}
+
+.signup-prompt a:hover {
+    text-decoration: underline; /* Adds underline on hover */
+}
+
+
+/* --- Styling for the Forgot Password Modal Overlay --- */
+.modal-overlay {
+    /* Fixed positioning to cover the entire viewport */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Semi-transparent black background */
+    background-color: rgba(0, 0, 0, 0.7);
+    /* Flexbox for centering the modal content */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* High z-index to ensure it's on top of all other content */
+    z-index: 1000;
+    /* Hidden by default, made visible with JavaScript 'active' class */
+    opacity: 0;
+    visibility: hidden;
+    /* Smooth transition for showing/hiding */
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+/* State when the modal is active (visible) */
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+/* --- Styling for the Modal Content Box --- */
+.modal-content {
+    background-color: #fff; /* White background */
+    padding: 30px; /* Padding inside the modal */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    width: 90%; /* Take up 90% width on smaller screens */
+    max-width: 400px; /* Max width for larger screens */
+    position: relative; /* Needed for any absolute positioning inside, if used */
+    /* Start slightly off-screen for a subtle slide-in effect */
+    transform: translateY(-20px);
+    transition: transform 0.3s ease; /* Smooth transition for slide-in */
+}
+
+/* When modal is active, slide content into place */
+.modal-overlay.active .modal-content {
+    transform: translateY(0);
+}
+
+.modal-content h3 {
+    margin-top: 0; /* Remove default top margin */
+    color: #333; /* Darker text color */
+    font-size: 1.5em; /* Larger font size for the title */
+    margin-bottom: 20px; /* Space below the title */
+    text-align: center; /* Center the title */
+}
+
+/* Form group styling within the modal (similar to contactus.css) */
+.modal-content .form-group {
+    margin-bottom: 15px; /* Space between form groups */
+}
+
+.modal-content label {
+    display: block; /* Make label a block element for stacking */
+    margin-bottom: 5px; /* Space below the label */
+    font-weight: 600; /* Bold label text */
+    color: #555; /* Medium grey for label text */
+}
+
+.modal-content input[type="email"] {
+    width: calc(100% - 20px); /* Full width minus padding for input */
+    padding: 10px; /* Padding inside the input fields */
+    border: 1px solid #ddd; /* Light grey border */
+    border-radius: 5px; /* Rounded input corners */
+    font-size: 1em; /* Standard font size */
+}
+
+/* Container for modal buttons */
+.modal-content .modal-buttons {
+    display: flex; /* Use flexbox for button layout */
+    justify-content: flex-end; /* Align buttons to the right */
+    gap: 10px; /* Space between the buttons */
+    margin-top: 25px; /* Space above the buttons */
+}
+
+/* General button styling within the modal */
+.modal-content .modal-buttons button {
+    padding: 10px 20px; /* Padding inside buttons */
+    border: none; /* No default border */
+    border-radius: 5px; /* Rounded button corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-size: 1em; /* Standard font size */
+    font-weight: 700; /* Bold text */
+    transition: background-color 0.2s ease; /* Smooth transition for background color */
+}
+
+/* Styling for the Cancel button */
+.modal-content .modal-buttons .cancel-btn {
+    background-color: #ccc; /* Light grey background */
+    color: #333; /* Dark text color */
+}
+
+.modal-content .modal-buttons .cancel-btn:hover {
+    background-color: #bbb; /* Slightly darker grey on hover */
+}
+
+/* Styling for the Send Email (primary) button */
+.modal-content .modal-buttons .send-email-btn {
+    background-color: #FF5733; /* Your signature orange color */
+    color: #fff; /* White text color */
+}
+
+.modal-content .modal-buttons .send-email-btn:hover {
+    background-color: #e64a25; /* Darker orange on hover */
+}
+
+/* Prevent scrolling the background when a modal is open */
+body.modal-open {
+    overflow: hidden;
+}
+
+
+
+/* --- User Profile Display (Welcome Message) --- */
+/* --- User Profile Display (Welcome Message) --- */
+#userProfileDisplay {
+    /* Remove box styling */
+    background-color: transparent; /* No background */
+    border: none; /* No border */
+    border-radius: 0; /* No rounded corners */
+    box-shadow: none; /* No shadow */
+
+    /* Positioning and spacing */
+    padding: 5px 0; /* Minimal vertical padding, no horizontal padding */
+    margin: 25px 20px 0 20px; /* Top margin, left/right 20px to match header padding, no bottom margin */
+    max-width: none; /* Allow it to take up available width */
+    text-align: center ; /* Align text to the left */
+
+    /* Text Styling (keep as is, or adjust as needed) */
+    color: #222;
+    font-family: 'Open Sans', sans-serif;
+    line-height: 1.6;
+
+    /* Initial state for JavaScript to control */
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease-out;
+}
+
+/* Style for when JS makes it visible */
+#userProfileDisplay.visible {
+    opacity: 1;
+}
+
+#userProfileDisplay h3 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.8rem;
+    color: #ff7b00; /* Keep the color of the heading */
+    margin: 0; /* Remove default margin from h3 */
+    padding: 0; /* Remove default padding from h3 */
+    display: inline; /* Make it inline so it doesn't create a new line after "Welcome," */
+}
+
+/* Ensure the span within h3 does not add extra space */
+#userProfileDisplay h3 span {
+    font-weight: 700;
+    /* No specific changes needed here unless it causes issues */
+}
+
+
+/* PHONE DISPLAY STYLES */
+/* Navbar styles */
+/* Mobile navbar styles */
+/* Desktop - show menu, hide hamburger */
+/* Default (Desktop) */
+/* Responsive Mobile Menu */
+@media (max-width: 768px) {
+  /* --- GLOBAL MOBILE FIXES (Crucial for preventing horizontal scroll and ensuring full width) --- */
+  html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%; /* Explicitly ensure they take 100% of the viewport width */
+      overflow-x: hidden; /* Prevents horizontal scrollbar if anything slightly overflows */
+  }
+
+  .top-nav {
+    width: 100%; /* Ensure header spans full width on mobile */
+    box-sizing: border-box; /* Include padding in width calculation */
+    height: 75px; /* Keep your existing smaller height for the navbar */
+    padding: 10px 15px; /* Adjust header padding for smaller screens */
+  }
+
+  /* Footer Mobile Adjustments - Now integrated here */
+  .site-footer {
+    width: 100%; /* Ensure footer spans full width on mobile */
+    box-sizing: border-box; /* Include padding in width calculation */
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center items horizontally when stacked */
+    padding: 20px 5%; /* Adjust padding for mobile (e.g., more top/bottom, less left/right) */
+    gap: 5px; /* Add space between stacked footer sections */
+  }
+
+  /* Adjust specific elements within footer sections if they don't center well */
+  .footer-left,
+  .footer-center,
+  .footer-right {
+    text-align: center; /* Center text within each section */
+    width: 100%; /* Make each section take full width for stacking */
+    max-width: 300px; /* Optional: prevent sections from becoming too wide on larger tablets in portrait */
+  }
+
+  .footer-right p {
+    margin-bottom: 1px; /* Less space between the phone and location lines */
+  }
+
+
+  /* --- HEADER & NAVIGATION LAYOUT (Your existing styles) --- */
+  .logo {
+    flex-shrink: 0;
+  }
+
+  .logo img {
+    height: 75px;
+    width: auto;
+  }
+
+  .brand-name {
+    display: none; /* Hide brand name on mobile as intended */
+  }
+
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-shrink: 0;
+    flex-direction: row-reverse;
+  }
+
+  /* --- HAMBURGER MENU --- */
+  .hamburger {
+    display: block;
+    cursor: pointer;
+    padding: 5px;
+    width: 40px;
+    height: 35px;
+    box-sizing: content-box;
+  }
+
+  .hamburger div {
+    width: 85%;
+    height: 4px;
+    background-color: #000;
+    margin: 6px 0;
+    border-radius: 2px;
+    transition: 0.3s;
+  }
+
+  /* --- CART ICON SIZING AND ALIGNMENT --- */
+  .cart-icon {
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    padding: 0;
+  }
+
+  .cart-icon svg {
+    width: 30px;
+    height: 30px;
+    stroke-width: 2;
+  }
+
+  .cart-count {
+    /* Adjusted from your previous value */
+    top: -4px; 
+    right: -8px; 
+    font-size: 16px; /* Slightly smaller for mobile */
+    padding: 2px 6px; /* Smaller padding for count bubble */
+    z-index: 2;
+    min-width: 16px; /* Ensure it's not too small */
+    line-height: 20px; /* Helps center single digit */
+  }
+
+  /* --- MAIN MENU (MOBILE) --- */
+  nav ul.menu {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 70px;
+    right: 15px;
+    background: white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    z-index: 1000;
+    padding: 10px;
+    border-radius: 10px;
+    width: max-content;
+    min-width: 150px;
+  }
+
+  nav ul.menu.menu-open,
+  nav ul.menu.show {
+    display: flex;
+  }
+
+  nav ul.menu li {
+    margin: 5px 0;
+  }
+
+  nav ul.menu li a {
+    padding: 8px 10px;
+    display: block;
+  }
+
+  /* --- DROPDOWN SUBMENU (MOBILE) --- */
+  .dropdown .submenu {
+    position: static;
+    display: flex;
+    flex-direction: column;
+    background: none;
+    box-shadow: none;
+    padding: 0;
+    margin-left: 15px;
+  }
+
+  .dropdown .submenu li a {
+    color: #006156;
+  }
+
+  .dropdown.active .submenu {
+    display: flex;
+  }
+
+  /* --- CART ASIDE (with fixes for cut-off bottom) --- */
+  .cart {
+    width: 250px; /* Adjust to your preferred mobile width */
+    right: -300px; /* Should be slightly more than the new width */
+    max-height: 95vh; /* Prevents cart from being cut off at the bottom of the screen */
+    overflow-y: auto; /* Enables scrolling within the cart if content overflows */
+    -webkit-overflow-scrolling: touch; /* For smoother scrolling on iOS */
+    padding-bottom: 30px;
+    top: 0;
+  }
+
+  .cart.active {
+    right: 0;
+  }
+
+  .cart h3 {
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+  }
+
+  .checkout-btn {
+    padding: 20px 25px;
+    font-size: 1rem;
+  }
+
+  /* --- WELCOME TITLE WRAPPER - MOBILE-SPECIFIC STYLING --- */
+  .mobile-only-title {
+    display: block;
+  }
+
+  .welcome-title-wrapper {
+    text-align: center;
+    margin-bottom: 0px;
+    padding-top: 0px;
+    padding-left: 10px;
+    padding-right: 10px;
+    box-sizing: border-box;
+    max-width: none;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .welcome-title-wrapper h2 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 2rem;
+    line-height: 1.2;
+    color: #ff7b00;
+    transition: none;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  .welcome-title-wrapper:hover h2 {
+    color: #00796B;
+  }
+
+  /* --- Intro Section & Bubble: Fit entire screen & Photo slide to bottom --- */
+  .intro-section {
+    flex-direction: column;
+    justify-content: flex-start;
+    height: auto;
+    min-height: unset;
+    padding: 40px 10px 10px;
+    margin-top: 0; /* Space above the intro section */
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  .intro-bubble {
+    width: 90%;
+    margin: 0 auto 30px auto;
+    padding: 30px 20px;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    flex-shrink: 0;
+  }
+
+  .intro-bubble h1 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+  }
+
+  .intro-bubble h1 span {
+    font-size: 1.8rem;
+  }
+
+  .intro-bubble p {
+    font-size: 1rem;
+  }
+
+  .intro-gallery {
+    position: static;
+    width: 90%;
+    height: 170px;
+    margin: 0 auto 20px auto;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    flex-shrink: 0;
+  }
+
+  .intro-gallery .slider img {
+    object-fit: contain;
+  }
+
+  /* --- Featured Items: Stack vertically and center for better mobile fit --- */
+  .featured-section {
+    padding: 1rem 5px;
+  }
+
+  .featured-heading {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .featured-items {
+    flex-direction: column; /* This is the key: stacks cards vertically */
+    align-items: center; /* Centers the stacked cards horizontally */
+    gap: 20px; /* Space between stacked cards */
+    margin-top: 15px;
+  }
+
+  .featured-card {
+    width: 90%; /* Make cards take most of the mobile screen width */
+    max-width: 250px; /* Keep this max-width, or adjust for overall card size */
+    margin-bottom: 0; /* Ensures consistent spacing with 'gap' on flex container */
+    height: 100px; /* Fixed height for cards on mobile */
+    padding: 0; /* No internal padding to let the image go edge-to-edge if needed */
+    background-color: white; /* Ensure the card has a background color */
+    border-radius: 15px; /* Keep the card itself rounded */
+    overflow: hidden;  /* CRUCIAL: Clips anything inside that goes beyond the rounded border */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Keep shadow */
+  }
+
+  .featured-card img {
+    width: 100%; /* Image takes full width of its card */
+    height: auto; /* <--- KEY CHANGE: Image height adjusts proportionally */
+    object-fit: cover; /* Optional: will still try to cover if dimensions allow, but 'auto' is dominant */
+    display: block; /* Important for proper image display and removing extra space */
+    margin: 0 auto; /* Center image horizontally */
+    border-radius: 15px; /* Round the image itself, matching the card */
+  }
+
+  .featured-card p {
+    font-size: 1rem; /* Smaller text for product names */
+    margin: 8px 0; /* Reduced margin to keep card compact */
+  }
+
+  /* --- Drink Categories (for horizontal scrolling) --- */
+  .drink-categories {
+    padding: 10px 0;
+  }
+
+  .drink-categories ul {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-left: 15px;
+    padding-right: 15px;
+    gap: 10px;
+    justify-content: flex-start;
+    scroll-snap-type: x mandatory;
+    scroll-padding-left: 15px;
+  }
+
+  .drink-categories li {
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    padding: 8px 15px;
+    font-size: 0.9em;
+    min-width: 80px;
+    text-align: center;
+  }
+
+  .drink-categories li.active {
+    background-color: #ffffff;
+    border-color: #ffffff;
+  }
+
+  /* --- Drinks Grid (for your menu pages) --- */
+  /* --- Drinks Grid (for your menu pages) --- */
+  .drinks-grid {
+    display: grid;
+    /* NEW: This creates two equal-width columns for mobile */
+    grid-template-columns: repeat(2, 1fr);
+    gap: 50px; /* Keep gap between cards as is, or adjust if needed */
+    padding: 20px; /* Keep padding around the grid as is, or adjust if needed */
+    justify-items: center; /* Centers cards horizontally in their cells */
+    align-items: stretch; /* Aligns cards to stretch vertically within their cells */
+  }
+
+  .drinks-grid .drink-card {
+    width: 100%; /* Make cards take 100% of their grid column width */
+    max-width: 200px; /* Adjust this max-width if cards are too large or too small */
+    margin: 0;
+  }
+
+  /* --- Book an Event Page Specific Fixes (Refined & Corrected) --- */
+
+  /* General adjustments for the form container and fieldsets */
+  .booking-form {
+    margin: 0 auto 30px; /* Adjust bottom margin for smaller screens */
+    padding: 0 15px; /* Add some horizontal padding to the form itself */
+  }
+
+  .booking-form fieldset {
+    padding: 50px; /* Reduce horizontal padding inside the "bubbles" */
+  }
+
+  .booking-form legend {
+    font-size: 1.3rem; /* Slightly reduce legend font size */
+    padding: 0 5px; /* Reduce legend padding */
+  }
+
+  /* Ensure form groups in a row stack on mobile if they were side-by-side */
+  .form-row {
+    flex-direction: column; /* Stacks items vertically */
+    gap: 0; /* Remove gap if items are stacking */
+  }
+
+  /* Ensure individual form groups take full width when stacked */
+  .form-row .form-group {
+    flex: none; /* Remove flex sizing */
+    width: 100%; /* Take full available width */
+  }
+
+  /* Corrected Input/Select/Textarea styling (this replaces your problematic rules) */
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%; /* Make them fill their parent .form-group */
+    max-width: none; /* Remove any desktop max-width constraints */
+    margin: 0 0 15px 0; /* Adjust margins for stacking */
+    padding: 10px; /* Slightly reduced padding for compactness */
+    box-sizing: border-box; /* Ensures padding is included in the width */
+    text-align: left; /* Default text alignment for inputs on mobile */
+  }
+
+  /* --- Estimated Drink Order Section Layout (Revised for full mobile stacking) --- */
+  /* Override the grid layout for mobile and stack all items within a drink entry */
+  #drink-entries .drink-entry {
+    display: flex; /* Switch to flexbox */
+    flex-direction: column; /* Stack all items vertically */
+    gap: 10px; /* Adjust gap for vertical stacking */
+    padding: 10px; /* Reduce padding for each drink entry bubble */
+    /* Crucial: Remove grid properties set for desktop */
+    grid-template-areas: unset;
+    grid-template-columns: unset;
+  }
+
+  /* Ensure form groups inside .drink-entry are not trying to align with old grid areas */
+  #drink-entries .drink-entry .form-group:nth-child(1),
+  #drink-entries .drink-entry .form-group:nth-child(2),
+  #drink-entries .drink-entry .form-group:nth-child(3),
+  #drink-entries .drink-entry .form-group:nth-child(4) {
+    grid-area: unset; /* Remove explicit grid area assignments */
+  }
+
+  /* Make the 'Remove' button responsive within the stacked drink-entry */
+  .drink-entry .remove-drink-btn {
+    width: 100%; /* Take full width */
+    height: auto; /* Allow height to adjust naturally */
+    line-height: normal; /* Remove fixed line-height */
+    text-align: center; /* Center the 'X' text */
+    margin-top: 5px; /* Small space above the button */
+  }
+
+  /* Adjust the "Add Another Drink" button for better touch target */
+  .add-drink-btn {
+    width: 100%; /* Take full width of its parent container */
+    padding: 12px;
+    margin-top: 15px; /* Add some space above it */
+  }
+
+  /* Adjust the main "Get a Quote" submit button for mobile */
+  .submit-btn {
+    width: 90%; /* Make it responsive, not a fixed pixel width */
+    max-width: 300px; /* Allow it to shrink, but not beyond this size */
+    font-size: 1.1em; /* Slightly smaller font for mobile readability */
+    padding: 12px;
+  }
+
+  /* --- Further refinement for very narrow screens (e.g., iPhone SE) --- */
+  @media (max-width: 400px) {
+    .booking-form fieldset {
+      padding: 15px; /* Even less padding for very small screens */
+    }
+    .form-intro {
+      font-size: 1rem;
+      margin-bottom: 20px;
+    }
+    .drink-categories ul {
+      padding-left: 10px;
+      padding-right: 10px;
+      gap: 5px;
+    }
+  }
+
+  #userProfileDisplay {
+        text-align: center; /* Center text inside the div */
+        margin: 25px auto 0 auto; /* Center the div itself horizontally */
+        padding: 5px 15px; /* Add some horizontal padding for smaller screens if needed */
+    }
+
+    #userProfileDisplay h3 {
+        display: block; /* Make h3 a block element again to ensure proper centering of its text */
+    }
+
+}
