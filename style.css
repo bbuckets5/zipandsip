@@ -240,7 +240,7 @@ nav ul.menu > li.dropdown:hover > ul.submenu {
 
 .slider {
   display: flex;
-  width: 100%;              /* for 3 images */
+  width: 100%;              /* for 3 Images */
   height: auto;
   animation: slide 15s infinite;
   transition: transform 0.5s ease-in-out;
