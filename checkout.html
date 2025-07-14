@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Checkout - Zip and Sip</title>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Poppins:wght@700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400..700&display=swap" rel="stylesheet">
     
     <script src="https://cdn.jsdelivr.net/npm/cleave.js@1.6.0/dist/cleave.min.js"></script>
     
@@ -14,17 +14,12 @@
 </head>
 <body>
     <header class="top-nav">
-        <div class="logo">
-            <img src="Images/logo.png" alt="Zip and Sip" />
-            <span class="brand-name">S&S Zip and Sip Natural Drinks and Juices</span>
-        </div>
-
-        <div class="nav-right">
+        <div class="nav-left">
             <nav>
                 <ul class="menu">
                     <li><a href="index.html">Home</a></li>
                     <li class="dropdown">
-                        <a href="#">Menu / Drinks ▼</a>
+                        <a href="#">Products ▼</a>
                         <ul class="submenu">
                             <li><a href="earth.html">Earth Blends</a></li>
                             <li><a href="adult.html">Adult Sips</a></li>
@@ -36,15 +31,28 @@
                     <li><a href="bookanevent.html">Book an Event</a></li>
                     <li><a href="aboutus.html">About Us</a></li>
                     <li><a href="contactus.html">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="nav-center-logo">
+            <div class="logo">
+                <img src="Images/Actuallogo.png" alt="Zip and Sip" />
+                <span class="brand-name"></span>
+            </div>
+        </div>
+
+        <div class="nav-right-icons">
+            <div id="userProfileDisplay" style="display: none;">
+                <h3>Good to see you again, <span id="displayedUserName"></span>!</h3>
+            </div>
+
+            <nav>
+                <ul class="menu">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" id="userDropdownToggle">
-                            <i class="fa-solid fa-user"></i>
+                        <a href="#" id="userDropdownToggle"> <i class="fa-solid fa-user"></i>
                         </a>
-                        <ul class="submenu" id="userDropdownMenu">
-                            <li><a href="signup.html" id="signupLink">Sign Up</a></li>
-                            <li><a href="login.html" id="loginLink">Log In</a></li>
-                            <li><a href="#" id="logoutLink" class="hidden-auth-link">Log Out</a></li>
-                        </ul>
+                        <ul class="submenu" id="userDropdownMenu"> <li><a href="signup.html" id="signupLink">Sign Up</a></li> <li><a href="login.html" id="loginLink">Log In</a></li>   <li><a href="#" id="logoutLink" class="hidden-auth-link">Log Out</a></li> </ul>
                     </li>
                 </ul>
             </nav>
@@ -65,92 +73,93 @@
             </div>
         </div>
     </header>
-
-    <div id="page-wrapper">
-        <section class="checkout-section fade-in-section">
-            <div class="checkout-container">
-                <div class="order-summary-wrapper">
-                    <div id="order-summary-column" class="order-summary-column">
-                        </div>
-                    <div id="order-totals-summary">
-                        </div>
-                </div>
-
-                <div class="customer-info-column">
-                    <h2 class="checkout-section-heading">Customer Information</h2>
-                    <form id="checkout-form">
-                        <div class="form-group-checkout">
-                            <label for="fullName">Full Name</label>
-                            <input type="text" id="fullName" required placeholder="John Doe"/>
-                        </div>
-                        <div class="form-group-checkout">
-                            <label for="shippingAddress">Shipping Address</label>
-                            <textarea id="shippingAddress" rows="3" required placeholder="123 Main St, City"></textarea>
-                        </div>
-
-                        <h2 class="checkout-section-heading mt-6">Shipping Method</h2>
-                        <div class="form-group-checkout">
-                            <select id="shippingMethod" required>
-                                <option value="">Select Method</option>
-                                <option value="standard">Standard Shipping - $5.00</option>
-                                <option value="express">Express Shipping - $15.00</option>
-                                <option value="noshipping">No Shipping (Pick Up Order)</option>
-                            </select>
-                        </div>
-
-                        <h2 class="checkout-section-heading mt-6">Payment Info</h2>
-                        
-                        <div class="form-group-checkout">
-                            <label for="cardNumber">Card Number</label>
-                            <input type="tel" id="cardNumber" placeholder="0000 0000 0000 0000" inputmode="numeric" required>
-                        </div>
-                        <div class="form-group-checkout flex gap-4">
-                            <div class="flex-1">
-                                <label for="expiryDate">Expiry Date</label>
-                                <input type="tel" id="expiryDate" placeholder="MM / YY" inputmode="numeric" required>
-                            </div>
-                            <div class="flex-1">
-                                <label for="cvv">CVV</label>
-                                <input type="tel" id="cvv" placeholder="123" inputmode="numeric" maxlength="4" required>
-                            </div>
-                        </div>
-                        <button type="submit" class="place-order-btn" id="placeOrderBtn">Place Order</button>
-                    </form>
-                </div>
+    
+    <section class="checkout-section fade-in-section">
+        <div class="checkout-container">
+            <div class="order-summary-wrapper">
+                <div id="order-summary-column" class="order-summary-column">
+                    </div>
+                <div id="order-totals-summary">
+                    </div>
             </div>
-        </section>
 
-        <footer class="site-footer">
-            <div class="footer-left">
-                <img src="Images/logo.png" alt="S&S ZipandSip Logo" class="footer-logo" />
-                <span class="footer-brand">S&S ZipandSip Natural Drinks</span>
+            <div class="customer-info-column">
+                <h2 class="checkout-section-heading">Customer Information</h2>
+                <form id="checkout-form">
+                    <div class="form-group-checkout">
+                        <label for="fullName">Full Name</label>
+                        <input type="text" id="fullName" required placeholder="John Doe"/>
+                    </div>
+                    <div class="form-group-checkout">
+                        <label for="shippingAddress">Delivery Address</label>
+                        <textarea id="shippingAddress" rows="3" required placeholder="123 Main St, City"></textarea>
+                    </div>
+
+                    <h2 class="checkout-section-heading mt-6">Delivery Method</h2>
+                    <div class="form-group-checkout">
+                        <select id="shippingMethod" required>
+                            <option value="">Select Method</option>
+                            <option value="standard">Standard Delivery (3-5 days) - $5.00</option>
+                            <option value="express">Express Delivery (1-2 days) - $15.00</option>
+                            <option value="noshipping">No Delivery (Pick Up Order)</option>
+                        </select>
+                    </div>
+
+                    <h2 class="checkout-section-heading mt-6">Payment Info</h2>
+                    
+                    <div class="form-group-checkout">
+                        <label for="cardNumber">Card Number</label>
+                        <input type="tel" id="cardNumber" placeholder="0000 0000 0000 0000" inputmode="numeric" required>
+                    </div>
+                    <div class="form-group-checkout flex gap-4">
+                        <div class="flex-1">
+                            <label for="expiryDate">Expiry Date</label>
+                            <input type="tel" id="expiryDate" placeholder="MM / YY" inputmode="numeric" required>
+                        </div>
+                        <div class="flex-1">
+                            <label for="cvv">CVV</label>
+                            <input type="tel" id="cvv" placeholder="123" inputmode="numeric" maxlength="4" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="place-order-btn" id="placeOrderBtn">Place Order</button>
+                </form>
             </div>
-            <div class="footer-center">
-                <span style="color: #1d1d1d; font-weight: 600;">Socials:</span>
-                <a href="#" class="footer-link" aria-label="Instagram">
-                    <img src="Images/instagram.png" alt="Instagram" class="footer-icon" /> Instagram
-                </a>
-                <span class="divider">|</span>
-                <a href="#" class="footer-link" aria-label="Facebook">
-                    <img src="Images/facebook.png" alt="Facebook" class="footer-icon" /> Facebook
-                </a>
-            </div>
-            <div class="footer-right">
-                <p><span style="font-weight: 600;">Phone:</span> (242) - 436 - 3391</p>
-                <p><span style="font-weight: 600;">Location:</span> Nassau, Bahamas</p>
-            </div>
-        </footer>
-    </div>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <div class="footer-left">
+            <img src="Images/Actuallogo.png" alt="S&S ZipandSip Logo" class="footer-logo" />
+            <span class="footer-brand">S&S ZipandSip Natural Drinks</span>
+        </div>
+
+        <div class="footer-center">
+            <span style="color: #1d1d1d; font-weight: 600;">Socials:</span>
+            <a href="https://www.instagram.com/p/DKCRRpZucM0/" class="footer-link" aria-label="Instagram">
+                <img src="Images/Instalogo.png" alt="Instagram" class="footer-icon" /> Instagram
+            </a>
+            <span class="divider">|</span>
+            <a href="#" class="footer-link" aria-label="Facebook">
+                <img src="Images/facebook.png" alt="Facebook" class="footer-icon" /> Facebook
+            </a>
+        </div>
+
+        <div class="footer-right">
+            <p><span style="font-weight: 600;">Phone:</span> (242) - 436 - 3391</p>
+            <p><span style="font-weight: 600;">Location:</span> Nassau, Bahamas</p>
+        </div>
+    </footer>
+
     <aside class="cart">
         <h3>Shopping Cart</h3>
         <div id="cart-items" class="cart-items">
             <p>No items in cart.</p>
         </div>
-        <span id="cart-total" style="display: none;">0.00</span>
         <a href="checkout.html" id="checkout-btn" class="checkout-btn">Continue to Checkout</a>
     </aside>
 
     <div id="overlay"></div>
+    <div id="toast-container" class="toast-container"></div>
 
     <div class="custom-modal" id="checkoutChoiceModal">
         <div class="modal-content">

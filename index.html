@@ -4,24 +4,19 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Zip and Sip</title>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Poppins:wght@700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400..700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css" />
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <header class="top-nav">
-        <div class="logo">
-            <img src="Images/logo.png" alt="Zip and Sip" />
-            <span class="brand-name">S&S Zip and Sip Natural Drinks and Juices</span>
-        </div>
-
-        <div class="nav-right">
+        <div class="nav-left">
             <nav>
                 <ul class="menu">
                     <li><a href="index.html">Home</a></li>
                     <li class="dropdown">
-                        <a href="#">Menu / Drinks ▼</a>
+                        <a href="#">Products ▼</a>
                         <ul class="submenu">
                             <li><a href="earth.html">Earth Blends</a></li>
                             <li><a href="adult.html">Adult Sips</a></li>
@@ -33,15 +28,27 @@
                     <li><a href="bookanevent.html">Book an Event</a></li>
                     <li><a href="aboutus.html">About Us</a></li>
                     <li><a href="contactus.html">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="nav-center-logo">
+            <div class="logo">
+                <img src="Images/Actuallogo.png" alt="Zip and Sip" />
+                <span class="brand-name"></span>
+            </div>
+        </div>
+
+        <div class="nav-right-icons">
+            <div id="userProfileDisplay" style="display: none;"> <h3>Good to see you again, <span id="displayedUserName"></span>!</h3>
+            </div>
+
+            <nav>
+                <ul class="menu">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" id="userDropdownToggle">
-                            <i class="fa-solid fa-user"></i>
+                        <a href="#" id="userDropdownToggle"> <i class="fa-solid fa-user"></i>
                         </a>
-                        <ul class="submenu" id="userDropdownMenu">
-                            <li><a href="signup.html" id="signupLink">Sign Up</a></li>
-                            <li><a href="login.html" id="loginLink">Log In</a></li>
-                            <li><a href="#" id="logoutLink" class="hidden-auth-link">Log Out</a></li>
-                        </ul>
+                        <ul class="submenu" id="userDropdownMenu"> <li><a href="signup.html" id="signupLink">Sign Up</a></li> <li><a href="login.html" id="loginLink">Log In</a></li>   <li><a href="#" id="logoutLink" class="hidden-auth-link">Log Out</a></li> </ul>
                     </li>
                 </ul>
             </nav>
@@ -63,24 +70,17 @@
         </div>
     </header>
     
-    
-    <div id="userProfileDisplay">
-    <h3>Hi, <span id="displayedUserName"></span>!</h3>
-</div>
-
-
     <section class="intro-section fade-in-section">
-
         <div class="welcome-title-wrapper mobile-only-title">
             <h2>Welcome to S&S Zip and Sip!</h2>
         </div>
 
         <div class="intro-bubble">
             <h1>
-                Your Daily<br />
-                <span style="font-size: 3.2rem; font-weight: 800;">Dose of Natural!</span>
+                A Healthy Outside<br />
+                <span style="font-size: 3.2rem; font-weight: 800;">Starts From The Inside</span>
             </h1>
-            <p>Clean energy you can feel, pure ingredients you can trust, and real results your body will love!</p>
+            <p>Welcome to Zip and Sip, where wellness feels like home. We handcraft cold-pressed organic juices and drinks, vibrant wellness shots, and comforting homemade Bahamian teas, all made to nourish your body with love. It's a clean, delicious, and healthy choice you can feel good about. Try one a day and your body will thank you. All made with love.</p>
         </div>
         <div class="intro-gallery">
             <div class="slider">
@@ -91,20 +91,22 @@
         </div>
     </section>
 
+    <div class="background-banner">
+        </div>
     <section class="featured-section fade-in-section" id="featured-section">
-        <h2 class="featured-heading">Featured Items!</h2>
+        <h2 class="featured-heading">Best Sellers!</h2>
         <div class="featured-items">
             <div class="featured-card">
                 <img src="Images/Greenjuice.png" alt="Healthy Drink" />
-                <p>"Just Green"</p>
+                <p>Just Green</p>
             </div>
             <div class="featured-card">
                 <img src="Images/Skyjuice.png" alt="Leaded Drink" />
-                <p>"Sky Juice"</p>
+                <p>Sky Juice</p>
             </div>
             <div class="featured-card">
                 <img src="Images/Soursop.png" alt="Unleaded Drink" />
-                <p>"Soursop Punch"</p>
+                <p>Soursop Punch</p>
             </div>
         </div>
     </section>
@@ -129,8 +131,8 @@
                 <p>Berry Seamoss</p>
             </div>
         </div>
-
     </section>
+
     <div class="shop-now-btn-wrapper fade-in-section">
         <a href="earth.html" class="shop-now-btn">Shop Now</a>
     </div>
@@ -139,7 +141,7 @@
         <h3>Why Zip & Sip?</h3>
         <ul>
             <li>✅ Packed with real, natural ingredients 🌿</li>
-            <li>✅ Freshly made—never rushed, always quality 🕒</li>
+            <li>✅ Freshly made, never rushed, always quality 🕒</li>
             <li>✅ Crafted with love and passion in every batch 🧡</li>
             <li>✅ Boost your energy without the crash 🚀</li>
             <li>✅ Eco-friendly and sustainable packaging 🌎</li>
@@ -148,14 +150,14 @@
 
     <footer class="site-footer">
         <div class="footer-left">
-            <img src="Images/logo.png" alt="S&S ZipandSip Logo" class="footer-logo" />
+            <img src="Images/Actuallogo.png" alt="S&S ZipandSip Logo" class="footer-logo" />
             <span class="footer-brand">S&S ZipandSip Natural Drinks</span>
         </div>
 
         <div class="footer-center">
             <span style="color: #1d1d1d; font-weight: 600;">Socials:</span>
-            <a href="#" class="footer-link" aria-label="Instagram">
-                <img src="Images/instagram.png" alt="Instagram" class="footer-icon" /> Instagram
+            <a href="https://www.instagram.com/p/DKCRRpZucM0/" class="footer-link" aria-label="Instagram">
+                <img src="Images/Instalogo.png" alt="Instagram" class="footer-icon" /> Instagram
             </a>
             <span class="divider">|</span>
             <a href="#" class="footer-link" aria-label="Facebook">
@@ -176,8 +178,9 @@
         </div>
         <a href="checkout.html" id="checkout-btn" class="checkout-btn">Continue to Checkout</a>
     </aside>
-    </div> <div id="overlay"></div>
 
+    <div id="overlay"></div>
+    <div id="toast-container" class="toast-container"></div>
 
     <script src="script.js"></script>
 </body>

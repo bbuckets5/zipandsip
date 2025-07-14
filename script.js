@@ -5,7 +5,8 @@ document.addEventListener('DOMContentLoaded', async function() {
     console.log('DOMContentLoaded fired. Script is initializing...');
 
     // --- DEBUGGING: Initial Auth Token Check on Page Load ---
-    const initialAuthTokenCheck = localStorage.getItem('authToken');
+    // Changed this initial check to sessionStorage for consistency
+    const initialAuthTokenCheck = sessionStorage.getItem('authToken');
     console.log('Initial authToken on page load:', initialAuthTokenCheck ? 'Token found (length: ' + initialAuthTokenCheck.length + ')' : 'No token found');
     // --- END DEBUGGING ---
 
@@ -132,8 +133,8 @@ document.addEventListener('DOMContentLoaded', async function() {
         const authToken = sessionStorage.getItem('authToken');
         const isLoggedIn = !!authToken; // Convert to boolean
 
-        // You might also get the current user's first name from localStorage if stored alongside the token
-        const currentUserName = localStorage.getItem('currentUserName');
+        // CHANGED: Get currentUserName from sessionStorage for consistency
+        const currentUserName = sessionStorage.getItem('currentUserName'); 
 
         if (signupLink && loginLink && logoutLink) {
             if (isLoggedIn) {
@@ -213,13 +214,13 @@ document.addEventListener('DOMContentLoaded', async function() {
                 saveCartToLocalStorage();
             } else {
                 console.error('Failed to save cart to backend:', data.message);
-                alert('Failed to save cart to your account. Please try again.');
+                showToast('Failed to save cart to your account. Please try again.', 'error');
                 // Even on backend failure, save to local storage as fallback
                 saveCartToLocalStorage();
             }
         } catch (error) {
             console.error('Network error saving cart to backend:', error);
-            alert('Network error while saving cart. Check your connection.');
+            showToast('Network error while saving cart. Check your connection.', 'error');
             // Even on network failure, save to local storage as fallback
             saveCartToLocalStorage();
         }
@@ -253,13 +254,13 @@ document.addEventListener('DOMContentLoaded', async function() {
                 saveCartToLocalStorage();
             } else {
                 console.error('Failed to load cart from backend:', data.message);
-                alert('Failed to load your cart from your account. Loading local cart.');
+                showToast('Failed to load your cart from your account. Loading local cart.');
                 // On backend failure, fall back to local storage
                 loadCartFromLocalStorage();
             }
         } catch (error) {
             console.error('Network error loading cart from backend:', error);
-            alert('Network error while loading cart. Loading local cart.');
+            showToast('Network error while loading cart. Loading local cart.');
             // On network failure, fall back to local storage
             loadCartFromLocalStorage();
         }
@@ -268,9 +269,6 @@ document.addEventListener('DOMContentLoaded', async function() {
     // Helper functions for localStorage (original but now called by backend functions)
 function saveCartToLocalStorage() {
     sessionStorage.setItem('zipAndSipCart', JSON.stringify(cartItems));
-    // --- CHANGE THIS LINE ---
-    // OLD: console.log('Cart saved to LocalStorage (fallback/sync):', JSON.parse(localStorage.getItem('zipAndSipCart')));
-    // NEW:
     console.log('Cart saved to SessionStorage (fallback/sync):', JSON.parse(sessionStorage.getItem('zipAndSipCart')));
 }
 
@@ -381,7 +379,7 @@ function saveCartToLocalStorage() {
             console.log('Email exists modal shown.');
         } else {
             console.warn('Modal elements for email exists prompt not found.');
-            alert('An account with this email already exists. Please log in or use a different email.'); // Fallback
+            showToast('An account with this email already exists. Please log in or use a different email.'); // Fallback
         }
     }
 
@@ -779,7 +777,7 @@ function saveCartToLocalStorage() {
                         console.log('Drink entry removed from booking form!');
                         initializeDrinkCounter(); // Re-initialize counter after removal to keep IDs correct
                     } else {
-                        alert('You must have at least one estimated drink order.');
+                        showToast('You must have at least one estimated drink order.');
                     }
                 }
             }
@@ -950,19 +948,19 @@ if (cleaveCvv) {
 
             // Basic Client-Side Validation
             if (!firstName || !lastName || !email || !confirmedEmail || !password || !confirmPassword) {
-                alert('Please fill in all fields.');
+                showToast('Please fill in all fields.');
                 return;
             }
             if (email !== confirmedEmail) {
-                alert('Email addresses do not match.');
+                showToast('Email addresses do not match.');
                 return;
             }
             if (password !== confirmPassword) {
-                alert('Passwords do not match.');
+                showToast('Passwords do not match.');
                 return;
             }
             if (password.length < 6) {
-                alert('Password must be at least 6 characters long.');
+                showToast('Password must be at least 6 characters long.');
                 return;
             }
 
@@ -978,15 +976,16 @@ if (cleaveCvv) {
                 const data = await response.json();
 
                 if (response.ok) {
-                    alert('Sign up successful! You are now logged in.');
-                    localStorage.setItem('authToken', data.token); // Store the JWT
+                    showToast('Sign up successful! You are now logged in.');
+                    // --- CHANGED THESE LINES TO sessionStorage ---
+                    sessionStorage.setItem('authToken', data.token); // Store the JWT in sessionStorage
                     // --- DEBUGGING: After signup ---
-                    console.log('DEBUG: After signup - AuthToken set in localStorage. Value present:', localStorage.getItem('authToken') ? 'YES' : 'NO');
+                    console.log('DEBUG: After signup - AuthToken set in sessionStorage. Value present:', sessionStorage.getItem('authToken') ? 'YES' : 'NO');
                     console.log('DEBUG: After signup - Token value length:', data.token ? data.token.length : 'N/A');
                     // --- END DEBUGGING ---
 
-                    localStorage.setItem('currentUserEmail', email); // Store user email
-                    localStorage.setItem('currentUserName', firstName); // Store first name
+                    sessionStorage.setItem('currentUserEmail', email); // Store user email in sessionStorage
+                    sessionStorage.setItem('currentUserName', firstName); // Store first name in sessionStorage
                     updateAuthUI(); // Update UI immediately after successful signup/login
 
                     // Conditional redirect after signup
@@ -1003,12 +1002,12 @@ if (cleaveCvv) {
                     if (response.status === 409) { // Conflict: Email already exists
                         showEmailExistsPrompt(); // Show the custom modal if email exists
                     } else {
-                        alert(data.message || 'Registration failed. Please try again.');
+                        showToast(data.message || 'Registration failed. Please try again.');
                     }
                 }
             } catch (error) {
                 console.error('Error during registration:', error);
-                alert('Network error or server unavailable. Please try again later.');
+                showToast('Network error or server unavailable. Please try again later.');
             }
         });
         console.log('Sign-up form listener attached successfully.');
@@ -1031,7 +1030,7 @@ if (loginForm) {
         const password = loginPasswordInput.value.trim();
 
         if (!email || !password) {
-            alert('Please enter both email and password.');
+            showToast('Please enter both email and password.');
             return;
         }
 
@@ -1047,10 +1046,8 @@ if (loginForm) {
             const data = await response.json();
 
             if (response.ok) {
-                alert('Login successful!');
+                showToast('Login successful!');
                 // --- THIS IS WHERE YOU MAKE THE CHANGES ---
-                // OLD: localStorage.setItem('authToken', data.token); // Store the JWT
-                // NEW:
                 sessionStorage.setItem('authToken', data.token); // Store the JWT in sessionStorage
 
                 // --- DEBUGGING: After login ---
@@ -1058,18 +1055,12 @@ if (loginForm) {
                 console.log('DEBUG: After login - Token value length:', data.token ? data.token.length : 'N/A');
                 // --- END DEBUGGING ---
 
-                // OLD: localStorage.setItem('currentUserEmail', email); // Store user email
-                // NEW:
                 sessionStorage.setItem('currentUserEmail', email); // Store user email in sessionStorage
 
                 // Assuming login response might include firstName if successful
                 if (data.firstName) {
-                    // OLD: localStorage.setItem('currentUserName', data.firstName);
-                    // NEW:
                     sessionStorage.setItem('currentUserName', data.firstName); // Store user name in sessionStorage
                 } else {
-                    // OLD: localStorage.removeItem('currentUserName'); // Clear if not provided
-                    // NEW:
                     sessionStorage.removeItem('currentUserName'); // Clear if not provided from sessionStorage
                 }
 
@@ -1086,11 +1077,11 @@ if (loginForm) {
                     window.location.href = 'index.html';
                 }
             } else {
-                alert(data.message || 'Login failed. Invalid credentials.');
+                showToast(data.message || 'Login failed. Invalid credentials.');
             }
         } catch (error) {
             console.error('Error during login:', error);
-            alert('Network error or server unavailable. Please try again later.');
+            showToast('Network error or server unavailable. Please try again later.');
         }
     });
 } else {
@@ -1117,7 +1108,7 @@ if (logoutLink) {
             cartItems = []; // Also reset the in-memory cart array
             updateCartDisplay();
             updateAuthUI();
-            alert('You have been logged out.');
+            showToast('You have been logged out.');
             window.location.href = 'index.html';
             return;
         }
@@ -1142,13 +1133,13 @@ if (logoutLink) {
             const data = await response.json();
 
             if (response.ok) {
-                alert(data.message || 'You have been logged out successfully.');
+                showToast(data.message || 'You have been logged out successfully.');
             } else {
-                alert(data.message || 'Logout failed on server, but you have been logged out locally.');
+                showToast(data.message || 'Logout failed on server, but you have been logged out locally.');
             }
         } catch (error) {
             console.error('Error during logout:', error);
-            alert('Network error during logout, but you have been logged out locally.');
+            showToast('Network error during logout, but you have been logged out locally.');
         } finally {
             updateAuthUI();
             updateCartDisplay();
@@ -1216,7 +1207,7 @@ if (logoutLink) {
 async function submitAuthenticatedOrder() {
     const authToken = sessionStorage.getItem('authToken');
     if (!authToken) {
-        alert('You must be logged in to place this order.');
+        showToast('You must be logged in to place this order.');
         return;
     }
 
@@ -1245,18 +1236,18 @@ async function submitAuthenticatedOrder() {
         const data = await response.json();
 
         if (response.ok) {
-            alert('Order placed successfully! A receipt has been sent to your email.');
+            showToast('Order placed successfully! A receipt has been sent to your email.');
             // Clear the cart and redirect
             cartItems = [];
             saveCartToBackend(); // This will save an empty cart to the backend
             updateCartDisplay();
             window.location.href = 'index.html';
         } else {
-            alert(data.message || 'Failed to place order. Please try again.');
+            showToast(data.message || 'Failed to place order. Please try again.');
         }
     } catch (error) {
         console.error('Network error placing authenticated order:', error);
-        alert('There was a network error. Please try again.');
+        showToast('There was a network error. Please try again.');
     }
 }
 
@@ -1273,7 +1264,7 @@ if (placeOrderBtn) {
             return;
         }
         if (cartItems.length === 0) {
-            alert('Your cart is empty.');
+            showToast('Your cart is empty.');
             return;
         }
 
@@ -1352,7 +1343,7 @@ if (placeOrderBtn) {
                     const data = await response.json();
 
                     if (response.ok) {
-                        alert(`Order placed successfully! A receipt has been sent to ${email}.`);
+                        showToast(`Order placed successfully! A receipt has been sent to ${email}.`);
                         hideGuestEmailModal();
                         // Clear the cart after a successful guest order
                         cartItems = [];
@@ -1360,15 +1351,15 @@ if (placeOrderBtn) {
                         updateCartDisplay(); // Update UI
                         window.location.href = 'index.html'; // Redirect to homepage
                     } else {
-                        alert(data.message || 'Failed to place guest order. Please try again.');
+                        showToast(data.message || 'Failed to place guest order. Please try again.');
                     }
                 } catch (error) {
                     console.error('Network error placing guest order:', error);
-                    alert('Network error while placing guest order. Please check your connection.');
+                    showToast('Network error while placing guest order. Please check your connection.');
                 }
 
             } else {
-                alert('Please enter a valid email address.');
+                showToast('Please enter a valid email address.');
             }
         });
     }
@@ -1448,19 +1439,19 @@ if (placeOrderBtn) {
             const confirmEmail = confirmForgotEmailInput.value.trim();
 
             if (email === '' || confirmEmail === '') {
-                alert('Please fill in both email fields.');
+                showToast('Please fill in both email fields.');
                 return;
             }
 
             if (email !== confirmEmail) {
-                alert('Emails do not match. Please ensure both fields have the same email address.');
+                showToast('Emails do not match. Please ensure both fields have the same email address.');
                 confirmForgotEmailInput.focus(); // Focus on the confirm field to correct
                 return;
             }
 
             // Basic email format validation (more robust validation typically on backend)
             if (!email.includes('@') || !email.includes('.')) {
-                alert('Please enter a valid email address.');
+                showToast('Please enter a valid email address.');
                 forgotEmailInput.focus();
                 return;
             }
@@ -1478,13 +1469,13 @@ if (placeOrderBtn) {
                 const data = await response.json();
 
                 if (response.ok) { // Your backend should send a success flag or HTTP 200 OK
-                    alert(data.message || 'A password reset link has been sent to your email.');
+                    showToast(data.message || 'A password reset link has been sent to your email.');
                 } else {
-                    alert(data.message || 'Error sending reset link. Please try again.'); // Display backend error message
+                    showToast(data.message || 'Error sending reset link. Please try again.'); // Display backend error message
                 }
             } catch (error) {
                 console.error('Network or server error:', error);
-                alert('An error occurred. Please try again later.');
+                showToast('An error occurred. Please try again later.');
             } finally {
                 // Always hide modal and clear form after attempt, regardless of success/failure for UX
                 forgotPasswordModalOverlay.classList.remove('active');
@@ -1542,13 +1533,13 @@ if (placeOrderBtn) {
                     sessionStorage.removeItem('currentUserEmail');
                     sessionStorage.removeItem('currentUserName');
                     updateAuthUI(); // Update UI to reflect logged-out state
-                    alert(data.message || 'Session expired. Please log in again.');
+                    showToast(data.message || 'Session expired. Please log in again.');
                 }
                 if (userProfileDisplay) userProfileDisplay.style.display = 'none';
             }
         } catch (error) {
             console.error('Network error fetching user profile:', error);
-            alert('Could not connect to the server to fetch profile. Please check your network.');
+            showToast('Could not connect to the server to fetch profile. Please check your network.');
             if (userProfileDisplay) userProfileDisplay.style.display = 'none';
         }
     }
@@ -1625,12 +1616,12 @@ if (bookingForm) {
             }
             
             // 5. If successful, show a success message and clear the form
-            alert('Thank you! Your booking request has been sent successfully. We will be in touch soon.');
+            showToast('Thank you! Your booking request has been sent successfully. We will be in touch soon.');
             bookingForm.reset();
 
         } catch (error) {
             console.error('Failed to submit booking form:', error);
-            alert(`Error: Could not send your booking request. ${error.message}`);
+            showToast(`Error: Could not send your booking request. ${error.message}`);
         } finally {
             // 6. Restore the submit button's text and state (whether it succeeded or failed)
             submitButton.disabled = false;
@@ -1679,12 +1670,12 @@ if (contactForm) {
             }
 
             // 4. Handle the success
-            alert('Thank you for your message! We will get back to you soon.');
+            showToast('Thank you for your message! We will get back to you soon.');
             contactForm.reset();
 
         } catch (error) {
             console.error('Failed to submit contact form:', error);
-            alert(`Error: ${error.message}`);
+            showToast(`Error: ${error.message}`);
         } finally {
             // 5. Restore the button's original state
             submitButton.disabled = false;
@@ -1692,6 +1683,53 @@ if (contactForm) {
         }
     });
 }
+
+
+// This function will display a toast notification
+function showToast(message, type = 'success') {
+    // 1. Get the toast container element
+    const toastContainer = document.getElementById('toast-container');
+    if (!toastContainer) {
+        console.error('Toast container not found! Make sure <div id="toast-container"> is in your HTML.');
+        return; // Exit if container isn't there
+    }
+
+    // 2. Create a new div element for the toast message
+    const toast = document.createElement('div');
+    toast.classList.add('toast'); // Add the base 'toast' class for styling
+
+    // 3. Add type-specific class (e.g., 'error', 'info')
+    if (type === 'error') {
+        toast.classList.add('error');
+    } else if (type === 'info') {
+        toast.classList.add('info');
+    } // 'success' is default and doesn't need a specific class unless styled differently
+
+    // 4. Set the message text
+    toast.textContent = message;
+
+    // 5. Append the toast to the container
+    toastContainer.appendChild(toast);
+
+    // 6. Trigger the show animation (using a small delay to ensure CSS transition)
+    // RequestAnimationFrame is generally better for visual updates
+    requestAnimationFrame(() => {
+        toast.classList.add('show');
+    });
+
+    // 7. Set a timeout to hide and remove the toast after a few seconds
+    setTimeout(() => {
+        toast.classList.remove('show'); // Start hide animation
+        toast.classList.add('hide');    // Apply hide class if you want a separate exit animation
+
+        // Listen for the end of the transition to remove the element from the DOM
+        // This prevents the DOM from accumulating hidden toast elements
+        toast.addEventListener('transitionend', () => {
+            toast.remove(); // Remove the element after the animation finishes
+        }, { once: true }); // Ensure this listener only runs once
+    }, 3000); // Toast will be visible for 3 seconds (3000 milliseconds)
+}
+
 
 
 }); // End of DOMContentLoaded

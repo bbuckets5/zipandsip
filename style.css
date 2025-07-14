@@ -3,29 +3,58 @@ body {
   font-family: 'Segoe UI', sans-serif;
   background-color: #FFFDF9;
   color: #222;
+  /* REVERTED: Removed padding-top here. Content under navbar will no longer be pushed down. */
 }
 
 /* Top navigation bar */
 .top-nav {
-    height: 95px; /* smaller height */
-  padding: 0 20px; /* keep some side padding */
-  display: flex;
-  align-items: center; /* vertically center content */
-  justify-content: space-between;
-  background-color: #006156; /* keep your background */
+  height: 95px;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center; /* Keeps direct grid children centered */
+  background-color: #006435;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  position: relative; /* REVERTED: Back to original position: relative */
+  z-index: 10; /* REVERTED: Back to original z-index */
+  overflow: visible;
+  box-sizing: border-box;
 }
 
-.nav-right {
-    display: flex; /* Make it a flex container */
-    align-items: center; /* Vertically align its children (nav, cart-icon, hamburger) */
-    gap: 25px; /* Add space between the nav menu and the cart/hamburger icons */
+.nav-left,
+.nav-center-logo,
+.nav-right-icons {
+  display: flex;
+  align-items: center; /* Keeps contents of these flex containers centered */
+  height: 100%;
+}
+
+.nav-center-logo {
+  justify-content: center;
+  position: relative;
+}
+
+.nav-right-icons {
+  justify-content: flex-end;
+  gap: 25px;
 }
 
 /* Logo */
+.logo {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 0; /* ORIGINAL: Keep as is */
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .logo img {
-  height: 80px; /* scale logo to fit navbar */
+  height: 150px;
   width: auto;
+  margin-top: 10px; /* ORIGINAL: Keep as is */
 }
 
 .brand-name {
@@ -35,7 +64,9 @@ body {
   font-family: 'Poppins', sans-serif;
   line-height: 1;
   position: relative;
-  top: -28px; /* 👈 tweak this value as needed */
+  top: -10px;
+  background-color: #FFFFFF;
+  padding: 0 5px;
 }
 
 /* Nav menu */
@@ -45,7 +76,12 @@ nav ul.menu {
   margin: 0;
   padding: 0;
   gap: 25px;
-  align-items: center; /* vertically center items */
+  align-items: center;
+}
+
+/* NEW: Add margin-top to the main nav within nav-left to push it down */
+.nav-left nav {
+    margin-top: 10px; /* Adjust this value to lower the main navigation links */
 }
 
 nav ul.menu > li {
@@ -56,16 +92,18 @@ nav ul.menu > li > a {
   text-decoration: none;
   color: #222;
   font-weight: 600;
-  padding: 8px 5px;
+  /* ORIGINAL: padding was 8px 5px. Now balancing to ensure the visual shift */
+  padding: 8px 5px; /* Keep original padding as margin on parent 'nav' handles overall shift */
   cursor: pointer;
+  display: inline-block;
 }
 
 nav ul.menu > li:hover > a {
-  color: #ff7b00; /* coral highlight */
+  color: #ff7b00;
   border-bottom: 2px solid #ff7b00;
 }
 
-/* Dropdown submenu */
+/* Dropdown submenu (general) */
 nav ul.submenu {
   list-style: none;
   padding-left: 0;
@@ -79,75 +117,107 @@ nav ul.submenu {
   border-radius: 6px;
   min-width: 140px;
   z-index: 1000;
+  white-space: nowrap;
 }
 
 nav ul.submenu li a {
   display: block;
   padding: 8px 20px;
-  color: #222;
   text-decoration: none;
+  color: #222;
+  font-weight: 500;
 }
 
 nav ul.submenu li a:hover {
   background-color: #A8E6CF;
-  color: #222;
+  color: #ff7b00;
 }
 
+/* Show dropdown */
 nav ul.menu > li.dropdown:hover > ul.submenu {
   display: block;
 }
 
-/* Hamburger icon (hidden on desktop) */
-.hamburger {
-    display: none;
+/* --- USER ICON DROPDOWN FIXES --- */
+/* NEW: Add margin-top to the nav within nav-right-icons to push the user icon down */
+.nav-right-icons nav {
+    margin-top: 10px; /* Adjust this value to lower the user icon */
 }
 
-/* Cart icon (desktop) - Targets the DIV */
+.nav-right-icons ul.menu li.dropdown ul.submenu {
+  left: 50%;
+  transform: translateX(-50%);
+  top: 100%;
+  flex-direction: column;
+  display: none;
+  padding: 10px 0;
+}
+
+.nav-right-icons ul.menu li.dropdown:hover ul.submenu {
+  display: block;
+}
+
+.nav-right-icons ul.menu > li.dropdown > a {
+  border-bottom: none !important;
+  /* ORIGINAL: Keep padding as is unless further fine-tuning is needed after parent margin-top */
+  padding: 8px 5px; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Icons (user + cart) size + alignment */
+.nav-right-icons i.fa-user {
+  font-size: 22px;
+  color: #222;
+}
+
+/* This makes the Font Awesome user icon turn orange when its parent menu item is hovered */
+.nav-right-icons ul.menu > li.dropdown:hover > a i.fa-user {
+    color: #ff7b00; /* Sets the icon color to your accent orange */
+}
+
+/* Cart icon */
 .cart-icon {
-    position: relative; /* Keep for the cart count bubble positioning */
-    cursor: pointer;
-    display: flex; /* Use flex to center the SVG within the div */
-    align-items: center;
-    justify-content: center;
-    /* You might want a slight padding or min-size if it looks too small/cramped */
-    padding: 0px; /* Adjust as needed, was 0 in your old li style */
-    height: 28px; /* Match SVG height or give clickable area */
-    width: 28px; /* Match SVG width or give clickable area */
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 28px;
+  width: 28px;
+  /* NEW: Add margin-top to lower the cart icon */
+  margin-top: 10px; /* Adjust this value to lower the cart icon */
 }
 
-/* Target the SVG directly inside the .cart-icon div */
 .cart-icon svg {
-    width: 28px; /* Ensure SVG is this size */
-    height: 28px; /* Ensure SVG is this size */
-    /* You can remove vertical-align: middle; as flexbox will handle alignment */
+  width: 28px;
+  height: 28px;
 }
 
-/* Target the cart count bubble */
 .cart-count {
-    position: absolute;
-    /* These are the desktop position values you had. Adjust them if your desktop view needs tweaking. */
-    top: -6px;
-    right: -12px;
-
-    background: red;
-    color: white;
-    font-size: 12px;
-    font-weight: bold;
-    padding: 3px 4px 4px 7px; /* Adjusted padding for better fit */
-    border-radius: 50%; /* Makes it a circle */
-    pointer-events: none; /* Allows clicks to pass through to the cart icon */
-    z-index: 10; /* Ensures it's on top of other elements */
-    min-width: 12px; /* Prevents it from collapsing too much for single digits */
-    text-align: center; /* Centers the number horizontally */
-    line-height: 12px; /* Vertically centers the number */
-    display: inline-block; /* Helps with min-width and line-height centering */
+  position: absolute;
+  top: -6px;
+  right: -12px;
+  background: red;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 3px 4px 4px 7px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10;
+  min-width: 12px;
+  text-align: center;
+  line-height: 12px;
+  display: inline-block;
 }
 
 .earth-blends {
   text-align: center;
   font-size: 2rem;
   font-weight: 700;
-  color: #006156; /* same green as your nav bubble text */
+  color: #006435; /* same green as your nav bubble text */
   margin: 20px 0;
   cursor: pointer;
   transition: color 0.3s ease;
@@ -188,13 +258,13 @@ nav ul.menu > li.dropdown:hover > ul.submenu {
 }
 
 .intro-bubble h1 {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Lora', sans-serif;
   font-weight: 700;
   font-size: 2.8rem;
   line-height: 1.2;
   text-align: center;
   margin-bottom: 20px;
-  color: #006156;
+  color: #00532c;
   transition: color 0.3s ease;
   cursor: default;
 }
@@ -271,11 +341,25 @@ nav ul.menu > li.dropdown:hover > ul.submenu {
   }
 }
 
+.background-banner {
+  /* Replace with the actual path to your image */
+  background-image: url('Images/drinkwell.png'); 
+  
+  /* Sets a height for the div so it's visible */
+  min-height: 350px; 
+
+  /* Ensures the image covers the entire container */
+  background-size: cover;
+
+  /* Centers the image within the div */
+  background-position: center; 
+}
+
 .featured-section h2 {
   font-family: 'Poppins', sans-serif;
   font-weight: 700;
   font-size: 2.5rem;
-  color: #00796B;      /* same green as welcome message */
+  color: #00532c;      /* same green as welcome message */
   margin-bottom: 20px;
   text-align: center;
   transition: color 0.3s ease;
@@ -296,7 +380,7 @@ nav ul.menu > li.dropdown:hover > ul.submenu {
   font-family: 'Poppins', sans-serif;
   font-weight: 700;
   font-size: 2.5rem;
-  color: #006156; /* same green as nav */
+  color: #00532c; /* same green as nav */
   margin-bottom: 1.5rem;
   transition: color 0.3s ease;
   cursor: default;
@@ -336,7 +420,7 @@ nav ul.menu > li.dropdown:hover > ul.submenu {
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   font-size: 1.1rem;
-  color: #00796B;
+  color: #00532c; /* same green as nav */
   margin: 0;
   transition: color 0.3s ease;
 }
@@ -355,7 +439,7 @@ nav ul.menu > li.dropdown:hover > ul.submenu {
   font-family: 'Poppins', sans-serif;
   font-weight: 700;
   font-size: 2.5rem;
-  color: #00796B;
+  color: #00532c; /* same green as nav */
   margin-bottom: 1.5rem;
   transition: color 0.3s ease;
   cursor: default;
@@ -405,7 +489,7 @@ nav ul.menu > li.dropdown:hover > ul.submenu {
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   font-size: 1.1rem;
-  color: #00796B;
+  color: #00532c; /* same green as nav */
   margin: 0.8rem 0 1rem;
   transition: color 0.3s ease;
 }
@@ -432,7 +516,7 @@ nav ul.menu > li.dropdown:hover > ul.submenu {
   font-family: 'Poppins', sans-serif;
   font-size: 2rem;
   font-weight: 700;
-  color: #00796B;
+  color: #00532c; /* same green as nav */
   margin-bottom: 20px;
   transition: color 0.3s ease;
   cursor: default;
@@ -469,9 +553,9 @@ nav ul.menu > li.dropdown:hover > ul.submenu {
     text-decoration: none;
     font-size: 1rem;
     font-weight: bold;
-    background-color: #00796B;
+    background-color: #00532c; /* same green as nav */
     color: white;
-    border: 2px solid #00796B;
+    border: 2px solid #00532c; /* same green as nav */
     border-radius: 15px;
     cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s, color 0.3s;
@@ -479,13 +563,13 @@ nav ul.menu > li.dropdown:hover > ul.submenu {
 
 .shop-now-btn:hover {
     background-color: white;
-    color: #00796B;
+    color: #00532c; /* same green as nav */
     transform: scale(1.05);
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
 }
 
 .site-footer {
-  background-color: #006156; /* same as nav */
+  background-color: #00532c; /* same as nav */
   color: #1d1d1d;
   display: flex;
   justify-content: space-between;
@@ -684,7 +768,7 @@ body {
     align-self: flex-start; /* Keeps price aligned to the left of its content area */
     font-family: 'Poppins', sans-serif;
     font-size: 1.4rem;
-    color: #006156;
+    color: #006435;
     margin: -2px 0 -10px 4px; /* Adjust if needed after adding wrapper */
 }
 
@@ -703,7 +787,7 @@ body {
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
     font-size: 1.2rem;
-    color: #006156;
+    color: #006435;
     margin-bottom: 8px; /* You might adjust this or rely on padding from .drink-card-content */
     text-align: center;
 }
@@ -775,7 +859,7 @@ body {
   font-weight: 700;
   font-size: 1.3rem;
   text-align: right;
-  color: #006156;
+  color: #006435;
   margin-top: 10px;
 }
 
@@ -797,11 +881,17 @@ html, body {
     transition: filter 0.3s ease; 
 }
 
-/* --- Main Content Area Flex Growth (UPDATE THIS RULE) --- */
+/* --- Main Content Area Flex Growth --- */
 main { 
-    flex-grow: 1;           /* Keep this */
-    display: flex;         /* ADD THIS: Forces 'main' to be a flex container */
-    flex-direction: column; /* ADD THIS: Ensures content within 'main' stacks correctly */
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Add this new rule below your main style */
+/* This targets pages with a drink grid OR a booking form */
+main:has(.drinks-grid, .booking-form) {
+    padding-top: 50px; /* Adjust value to match your header's height */
 }
 
 /* Overlay for dimming */
@@ -915,7 +1005,7 @@ main {
   font-family: 'Poppins', sans-serif;
   font-weight: 700;
   font-size: 1.8rem;
-  color: #00796B;
+  color: #006435;
   text-align: center;
   margin: 0 0 20px 0;
   cursor: pointer;
@@ -935,9 +1025,9 @@ main {
   font-family: 'Poppins', sans-serif;
   font-weight: 700;
   font-size: 1.2rem;
-  color: #00796B;
+  color: #006435;
   background-color: #eee;
-  border: 2px solid #00796B;
+  border: 2px solid #006435;
   border-radius: 30px;
   cursor: pointer;
   transition: background-color 0.3s ease, color 0.3s ease;
@@ -1110,7 +1200,7 @@ main {
   font-size: 1.2em;
   font-weight: bold;
   font-family: 'Poppins', sans-serif;
-  background-color: #00796B; /* Your primary green */
+  background-color: #006435; /* Your primary green */
   color: white;
   border: none;
   border-radius: 15px;
@@ -1135,7 +1225,7 @@ main {
 }
 
 .add-drink-btn {
-  background-color: #006156; /* Your darker nav green */
+  background-color: #006435; /* Your darker nav green */
   color: white;
   margin-top: -10px;
 }
@@ -1200,7 +1290,7 @@ main {
     font-family: 'Your Body Font', sans-serif; /* Replace with your desired font */
     font-size: 1.4em;      /* Slightly larger font for readability */
     line-height: 1.6;      /* Good line spacing */
-    color: #006156;           /* Medium gray for body text */
+    color: #006435;           /* Medium gray for body text */
     margin-bottom: 15px;   /* Space between paragraphs */
     text-align: center;      /* Keep content paragraphs left-aligned for readability */
     font-weight: bold;
@@ -1252,7 +1342,7 @@ main {
     font-family: 'Pacifico'; /* Use your preferred body font */
     font-size: 1.4em; /* Match font size from story-content p */
     line-height: 1.6;
-    color: #006156;    /* Match text color from story-content p */
+    color: #006435;    /* Match text color from story-content p */
     margin-bottom: 30px;
     text-align: center; /* Centered text */
     font-weight: bold;  /* Bold text */
@@ -1291,7 +1381,7 @@ main {
 }
 
 .form-group input:focus {
-    border-color: #006156; /* Your brand's green for a focus highlight */
+    border-color: #006435; /* Your brand's green for a focus highlight */
     outline: none; /* Removes default browser outline */
     box-shadow: 0 0 5px rgba(0, 97, 86, 0.2); /* Soft shadow on focus */
 }
@@ -1346,7 +1436,7 @@ main {
 }
 
 .submit-btn {
-    background-color: #006156; /* Green submit button */
+    background-color: #006435; /* Green submit button */
     color: white;
     padding: 12px 25px;
     border: none;
@@ -1381,7 +1471,7 @@ main {
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
     font-size: 1.8rem;
-    color: #00796B;
+    color: #006435;
     margin-bottom: 20px;
     padding-bottom: 10px;
     border-bottom: 1px solid #eee;
@@ -1507,7 +1597,7 @@ main {
 }
 .order-total-summary .total-value {
     font-weight: 700;
-    color: #00796B;
+    color: #006435;
     font-size: 1.1em;
 }
 .order-total-summary .grand-total {
@@ -1898,523 +1988,223 @@ body.modal-open {
 
 /* --- User Profile Display (Welcome Message) --- */
 /* --- User Profile Display (Welcome Message) --- */
+/* --- NEW CSS for User Profile Display in Header --- */
 #userProfileDisplay {
-    /* Remove box styling */
-    background-color: transparent; /* No background */
-    border: none; /* No border */
-    border-radius: 0; /* No rounded corners */
-    box-shadow: none; /* No shadow */
-
-    /* Positioning and spacing */
-    padding: 5px 0; /* Minimal vertical padding, no horizontal padding */
-    margin: 25px 20px 0 20px; /* Top margin, left/right 20px to match header padding, no bottom margin */
-    max-width: none; /* Allow it to take up available width */
-    text-align: center ; /* Align text to the left */
-
-    /* Text Styling (keep as is, or adjust as needed) */
-    color: #222;
-    font-family: 'Open Sans', sans-serif;
-    line-height: 1.6;
-
-    /* Initial state for JavaScript to control */
-    display: none;
-    opacity: 0;
-    transition: opacity 0.5s ease-out;
-}
-
-/* Style for when JS makes it visible */
-#userProfileDisplay.visible {
-    opacity: 1;
+    margin-right: 15px; /* Space between message and user icon/nav */
+    color: #FF5733; /* White color for the text, visible on green header */
+    font-size: 1rem;
+    font-weight: 700; /* Bold text for emphasis */
+    white-space: nowrap; /* Prevent text from wrapping */
+    display: flex; /* Make it a flex container */
+    align-items: center; /* Vertically center content within it */
+    padding: 0; /* Remove any default padding */
+    margin-top: 10px; /* Aligns with the other elements that also got a margin-top */
+    /* Controlled by script.js, so initial display:none is fine in HTML or JS sets it. */
+    /* Removed opacity/transition properties here as they are usually controlled by JS */
 }
 
 #userProfileDisplay h3 {
-    font-family: 'Poppins', sans-serif;
-    font-size: 1.8rem;
-    color: #ff7b00; /* Keep the color of the heading */
     margin: 0; /* Remove default margin from h3 */
-    padding: 0; /* Remove default padding from h3 */
-    display: inline; /* Make it inline so it doesn't create a new line after "Welcome," */
+    font-size: 1em; /* Make h3 size relative to parent's font-size */
+    font-weight: inherit; /* Inherit font-weight from parent */
+    color: inherit; /* Inherit color from parent (so it's white) */
+    display: inline; /* Keep it inline within the flex container */
 }
 
-/* Ensure the span within h3 does not add extra space */
-#userProfileDisplay h3 span {
-    font-weight: 700;
-    /* No specific changes needed here unless it causes issues */
+#userProfileDisplay span {
+    font-weight: 700; /* Make the name bold */
+    margin-left: 5px; /* Small space between "Hi," and the name */
+}
+/* --- END NEW CSS for User Profile Display --- */
+
+
+
+/* style.css */
+
+/* Toast Container - Where toasts will appear (BOTTOM MIDDLE) */
+.toast-container {
+    position: fixed; /* Stays in place relative to the viewport */
+    bottom: 20px;    /* 20px from the bottom of the screen */
+    left: 50%;       /* Start at 50% from the left */
+    transform: translateX(-50%); /* Pull back by half its width to truly center it */
+    z-index: 1000;   /* Ensures it's on top of most other content */
+    display: flex;   /* Arranges toasts in a column */
+    flex-direction: column;
+    gap: 10px;       /* Spacing between multiple toasts */
+    align-items: center; /* Center toasts horizontally within the container if multiple */
+}
+
+/* Individual Toast Message Style (keep as is) */
+.toast {
+    background-color: #4CAF50; /* Green for success (default) */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.toast.hide {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.toast.error {
+    background-color: #f44336;
+}
+
+.toast.info {
+    background-color: #2196F3;
 }
 
 
-/* PHONE DISPLAY STYLES */
-/* Navbar styles */
-/* Mobile navbar styles */
-/* Desktop - show menu, hide hamburger */
-/* Default (Desktop) */
-/* Responsive Mobile Menu */
+/* ==========================================================================
+   MOBILE STYLES (max-width: 768px)
+   ========================================================================== */
+
 @media (max-width: 768px) {
-  /* --- GLOBAL MOBILE FIXES (Crucial for preventing horizontal scroll and ensuring full width) --- */
-  html, body {
-      margin: 0;
-      padding: 0;
-      width: 100%; /* Explicitly ensure they take 100% of the viewport width */
-      overflow-x: hidden; /* Prevents horizontal scrollbar if anything slightly overflows */
-  }
 
-  .top-nav {
-    width: 100%; /* Ensure header spans full width on mobile */
-    box-sizing: border-box; /* Include padding in width calculation */
-    height: 75px; /* Keep your existing smaller height for the navbar */
-    padding: 10px 15px; /* Adjust header padding for smaller screens */
-  }
-
-  /* Footer Mobile Adjustments - Now integrated here */
-  .site-footer {
-    width: 100%; /* Ensure footer spans full width on mobile */
-    box-sizing: border-box; /* Include padding in width calculation */
-    flex-direction: column; /* Stack items vertically */
-    align-items: center; /* Center items horizontally when stacked */
-    padding: 20px 5%; /* Adjust padding for mobile (e.g., more top/bottom, less left/right) */
-    gap: 5px; /* Add space between stacked footer sections */
-  }
-
-  /* Adjust specific elements within footer sections if they don't center well */
-  .footer-left,
-  .footer-center,
-  .footer-right {
-    text-align: center; /* Center text within each section */
-    width: 100%; /* Make each section take full width for stacking */
-    max-width: 300px; /* Optional: prevent sections from becoming too wide on larger tablets in portrait */
-  }
-
-  .footer-right p {
-    margin-bottom: 1px; /* Less space between the phone and location lines */
-  }
-
-
-  /* --- HEADER & NAVIGATION LAYOUT (Your existing styles) --- */
-  .logo {
-    flex-shrink: 0;
-  }
-
-  .logo img {
-    height: 75px;
-    width: auto;
-  }
-
-  .brand-name {
-    display: none; /* Hide brand name on mobile as intended */
-  }
-
-  .nav-right {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    flex-shrink: 0;
-    flex-direction: row-reverse;
-  }
-
-  /* --- HAMBURGER MENU --- */
-  .hamburger {
-    display: block;
-    cursor: pointer;
-    padding: 5px;
-    width: 40px;
-    height: 35px;
-    box-sizing: content-box;
-  }
-
-  .hamburger div {
-    width: 85%;
-    height: 4px;
-    background-color: #000;
-    margin: 6px 0;
-    border-radius: 2px;
-    transition: 0.3s;
-  }
-
-  /* --- CART ICON SIZING AND ALIGNMENT --- */
-  .cart-icon {
-    position: relative;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 50px;
-    height: 50px;
-    padding: 0;
-  }
-
-  .cart-icon svg {
-    width: 30px;
-    height: 30px;
-    stroke-width: 2;
-  }
-
-  .cart-count {
-    /* Adjusted from your previous value */
-    top: -4px; 
-    right: -8px; 
-    font-size: 16px; /* Slightly smaller for mobile */
-    padding: 2px 6px; /* Smaller padding for count bubble */
-    z-index: 2;
-    min-width: 16px; /* Ensure it's not too small */
-    line-height: 20px; /* Helps center single digit */
-  }
-
-  /* --- MAIN MENU (MOBILE) --- */
-  nav ul.menu {
-    display: none;
-    flex-direction: column;
-    position: absolute;
-    top: 70px;
-    right: 15px;
-    background: white;
-    box-shadow: 0 0 10px rgba(0,0,0,0.2);
-    z-index: 1000;
-    padding: 10px;
-    border-radius: 10px;
-    width: max-content;
-    min-width: 150px;
-  }
-
-  nav ul.menu.menu-open,
-  nav ul.menu.show {
-    display: flex;
-  }
-
-  nav ul.menu li {
-    margin: 5px 0;
-  }
-
-  nav ul.menu li a {
-    padding: 8px 10px;
-    display: block;
-  }
-
-  /* --- DROPDOWN SUBMENU (MOBILE) --- */
-  .dropdown .submenu {
-    position: static;
-    display: flex;
-    flex-direction: column;
-    background: none;
-    box-shadow: none;
-    padding: 0;
-    margin-left: 15px;
-  }
-
-  .dropdown .submenu li a {
-    color: #006156;
-  }
-
-  .dropdown.active .submenu {
-    display: flex;
-  }
-
-  /* --- CART ASIDE (with fixes for cut-off bottom) --- */
-  .cart {
-    width: 250px; /* Adjust to your preferred mobile width */
-    right: -300px; /* Should be slightly more than the new width */
-    max-height: 95vh; /* Prevents cart from being cut off at the bottom of the screen */
-    overflow-y: auto; /* Enables scrolling within the cart if content overflows */
-    -webkit-overflow-scrolling: touch; /* For smoother scrolling on iOS */
-    padding-bottom: 30px;
-    top: 0;
-  }
-
-  .cart.active {
-    right: 0;
-  }
-
-  .cart h3 {
-    font-size: 1.6rem;
-    margin-bottom: 15px;
-  }
-
-  .checkout-btn {
-    padding: 20px 25px;
-    font-size: 1rem;
-  }
-
-  /* --- WELCOME TITLE WRAPPER - MOBILE-SPECIFIC STYLING --- */
-  .mobile-only-title {
-    display: block;
-  }
-
-  .welcome-title-wrapper {
-    text-align: center;
-    margin-bottom: 0px;
-    padding-top: 0px;
-    padding-left: 10px;
-    padding-right: 10px;
-    box-sizing: border-box;
-    max-width: none;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .welcome-title-wrapper h2 {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 700;
-    font-size: 2rem;
-    line-height: 1.2;
-    color: #ff7b00;
-    transition: none;
-    margin-top: 0;
-    margin-bottom: 0;
-  }
-
-  .welcome-title-wrapper:hover h2 {
-    color: #00796B;
-  }
-
-  /* --- Intro Section & Bubble: Fit entire screen & Photo slide to bottom --- */
-  .intro-section {
-    flex-direction: column;
-    justify-content: flex-start;
-    height: auto;
-    min-height: unset;
-    padding: 40px 10px 10px;
-    margin-top: 0; /* Space above the intro section */
-    box-sizing: border-box;
-    overflow: hidden;
-  }
-
-  .intro-bubble {
-    width: 90%;
-    margin: 0 auto 30px auto;
-    padding: 30px 20px;
-    border-radius: 20px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    flex-shrink: 0;
-  }
-
-  .intro-bubble h1 {
-    font-size: 2rem;
-    margin-bottom: 15px;
-  }
-
-  .intro-bubble h1 span {
-    font-size: 1.8rem;
-  }
-
-  .intro-bubble p {
-    font-size: 1rem;
-  }
-
-  .intro-gallery {
-    position: static;
-    width: 90%;
-    height: 170px;
-    margin: 0 auto 20px auto;
-    border-radius: 15px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    flex-shrink: 0;
-  }
-
-  .intro-gallery .slider img {
-    object-fit: contain;
-  }
-
-  /* --- Featured Items: Stack vertically and center for better mobile fit --- */
-  .featured-section {
-    padding: 1rem 5px;
-  }
-
-  .featured-heading {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-  }
-
-  .featured-items {
-    flex-direction: column; /* This is the key: stacks cards vertically */
-    align-items: center; /* Centers the stacked cards horizontally */
-    gap: 20px; /* Space between stacked cards */
-    margin-top: 15px;
-  }
-
-  .featured-card {
-    width: 90%; /* Make cards take most of the mobile screen width */
-    max-width: 250px; /* Keep this max-width, or adjust for overall card size */
-    margin-bottom: 0; /* Ensures consistent spacing with 'gap' on flex container */
-    height: 100px; /* Fixed height for cards on mobile */
-    padding: 0; /* No internal padding to let the image go edge-to-edge if needed */
-    background-color: white; /* Ensure the card has a background color */
-    border-radius: 15px; /* Keep the card itself rounded */
-    overflow: hidden;  /* CRUCIAL: Clips anything inside that goes beyond the rounded border */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Keep shadow */
-  }
-
-  .featured-card img {
-    width: 100%; /* Image takes full width of its card */
-    height: auto; /* <--- KEY CHANGE: Image height adjusts proportionally */
-    object-fit: cover; /* Optional: will still try to cover if dimensions allow, but 'auto' is dominant */
-    display: block; /* Important for proper image display and removing extra space */
-    margin: 0 auto; /* Center image horizontally */
-    border-radius: 15px; /* Round the image itself, matching the card */
-  }
-
-  .featured-card p {
-    font-size: 1rem; /* Smaller text for product names */
-    margin: 8px 0; /* Reduced margin to keep card compact */
-  }
-
-  /* --- Drink Categories (for horizontal scrolling) --- */
-  .drink-categories {
-    padding: 10px 0;
-  }
-
-  .drink-categories ul {
-    display: flex;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    padding-left: 15px;
-    padding-right: 15px;
-    gap: 10px;
-    justify-content: flex-start;
-    scroll-snap-type: x mandatory;
-    scroll-padding-left: 15px;
-  }
-
-  .drink-categories li {
-    flex-shrink: 0;
-    scroll-snap-align: start;
-    padding: 8px 15px;
-    font-size: 0.9em;
-    min-width: 80px;
-    text-align: center;
-  }
-
-  .drink-categories li.active {
-    background-color: #ffffff;
-    border-color: #ffffff;
-  }
-
-  /* --- Drinks Grid (for your menu pages) --- */
-  /* --- Drinks Grid (for your menu pages) --- */
-  .drinks-grid {
-    display: grid;
-    /* NEW: This creates two equal-width columns for mobile */
-    grid-template-columns: repeat(2, 1fr);
-    gap: 50px; /* Keep gap between cards as is, or adjust if needed */
-    padding: 20px; /* Keep padding around the grid as is, or adjust if needed */
-    justify-items: center; /* Centers cards horizontally in their cells */
-    align-items: stretch; /* Aligns cards to stretch vertically within their cells */
-  }
-
-  .drinks-grid .drink-card {
-    width: 100%; /* Make cards take 100% of their grid column width */
-    max-width: 200px; /* Adjust this max-width if cards are too large or too small */
-    margin: 0;
-  }
-
-  /* --- Book an Event Page Specific Fixes (Refined & Corrected) --- */
-
-  /* General adjustments for the form container and fieldsets */
-  .booking-form {
-    margin: 0 auto 30px; /* Adjust bottom margin for smaller screens */
-    padding: 0 15px; /* Add some horizontal padding to the form itself */
-  }
-
-  .booking-form fieldset {
-    padding: 50px; /* Reduce horizontal padding inside the "bubbles" */
-  }
-
-  .booking-form legend {
-    font-size: 1.3rem; /* Slightly reduce legend font size */
-    padding: 0 5px; /* Reduce legend padding */
-  }
-
-  /* Ensure form groups in a row stack on mobile if they were side-by-side */
-  .form-row {
-    flex-direction: column; /* Stacks items vertically */
-    gap: 0; /* Remove gap if items are stacking */
-  }
-
-  /* Ensure individual form groups take full width when stacked */
-  .form-row .form-group {
-    flex: none; /* Remove flex sizing */
-    width: 100%; /* Take full available width */
-  }
-
-  /* Corrected Input/Select/Textarea styling (this replaces your problematic rules) */
-  .form-group input,
-  .form-group select,
-  .form-group textarea {
-    width: 100%; /* Make them fill their parent .form-group */
-    max-width: none; /* Remove any desktop max-width constraints */
-    margin: 0 0 15px 0; /* Adjust margins for stacking */
-    padding: 10px; /* Slightly reduced padding for compactness */
-    box-sizing: border-box; /* Ensures padding is included in the width */
-    text-align: left; /* Default text alignment for inputs on mobile */
-  }
-
-  /* --- Estimated Drink Order Section Layout (Revised for full mobile stacking) --- */
-  /* Override the grid layout for mobile and stack all items within a drink entry */
-  #drink-entries .drink-entry {
-    display: flex; /* Switch to flexbox */
-    flex-direction: column; /* Stack all items vertically */
-    gap: 10px; /* Adjust gap for vertical stacking */
-    padding: 10px; /* Reduce padding for each drink entry bubble */
-    /* Crucial: Remove grid properties set for desktop */
-    grid-template-areas: unset;
-    grid-template-columns: unset;
-  }
-
-  /* Ensure form groups inside .drink-entry are not trying to align with old grid areas */
-  #drink-entries .drink-entry .form-group:nth-child(1),
-  #drink-entries .drink-entry .form-group:nth-child(2),
-  #drink-entries .drink-entry .form-group:nth-child(3),
-  #drink-entries .drink-entry .form-group:nth-child(4) {
-    grid-area: unset; /* Remove explicit grid area assignments */
-  }
-
-  /* Make the 'Remove' button responsive within the stacked drink-entry */
-  .drink-entry .remove-drink-btn {
-    width: 100%; /* Take full width */
-    height: auto; /* Allow height to adjust naturally */
-    line-height: normal; /* Remove fixed line-height */
-    text-align: center; /* Center the 'X' text */
-    margin-top: 5px; /* Small space above the button */
-  }
-
-  /* Adjust the "Add Another Drink" button for better touch target */
-  .add-drink-btn {
-    width: 100%; /* Take full width of its parent container */
-    padding: 12px;
-    margin-top: 15px; /* Add some space above it */
-  }
-
-  /* Adjust the main "Get a Quote" submit button for mobile */
-  .submit-btn {
-    width: 90%; /* Make it responsive, not a fixed pixel width */
-    max-width: 300px; /* Allow it to shrink, but not beyond this size */
-    font-size: 1.1em; /* Slightly smaller font for mobile readability */
-    padding: 12px;
-  }
-
-  /* --- Further refinement for very narrow screens (e.g., iPhone SE) --- */
-  @media (max-width: 400px) {
-    .booking-form fieldset {
-      padding: 15px; /* Even less padding for very small screens */
-    }
-    .form-intro {
-      font-size: 1rem;
-      margin-bottom: 20px;
-    }
-    .drink-categories ul {
-      padding-left: 10px;
-      padding-right: 10px;
-      gap: 5px;
-    }
-  }
-
-  #userProfileDisplay {
-        text-align: center; /* Center text inside the div */
-        margin: 25px auto 0 auto; /* Center the div itself horizontally */
-        padding: 5px 15px; /* Add some horizontal padding for smaller screens if needed */
+    /* --- GLOBAL MOBILE FIXES --- */
+    html,
+    body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        overflow-x: hidden;
     }
 
-    #userProfileDisplay h3 {
-        display: block; /* Make h3 a block element again to ensure proper centering of its text */
+    /* --- HEADER & NAVIGATION LAYOUT --- */
+    .top-nav {
+        display: flex;
+        justify-content: space-between; /* Pushes items to opposite ends */
+        align-items: center;
+        height: 80px; /* A good height for mobile */
+        padding: 0 15px; /* Spacing on the sides */
+        box-sizing: border-box;
+        background-color: #006435; /* Ensures header has its background */
     }
+
+    /* --- HIDE DESKTOP-ONLY ELEMENTS --- */
+    /* This hides the desktop text links and the user icon dropdown */
+    .nav-left,
+    .nav-right-icons > nav,
+    #userProfileDisplay {
+        display: none;
+    }
+
+    /* --- LOGO (POSITIONED ON THE LEFT) --- */
+    .nav-center-logo {
+        order: 1; /* This moves the logo to the first position (left) */
+    }
+    .logo {
+        position: static;
+        transform: none;
+        height: 100%;
+        display: flex;
+        align-items: center;
+    }
+    .logo img {
+        height: 70px; /* Adjust logo size for mobile */
+        margin-top: 0;
+    }
+    .brand-name {
+        display: none;
+    }
+
+    /* --- ICONS (POSITIONED ON THE RIGHT) --- */
+    .nav-right-icons {
+        order: 2; /* This moves the icons to the second position (right) */
+        display: flex;
+        align-items: center;
+        gap: 15px; /* Space between hamburger and cart */
+    }
+
+    /* --- HAMBURGER & CART STYLES --- */
+    .hamburger {
+        display: block; /* Make hamburger visible */
+    }
+    .hamburger div {
+        background-color: #fff; /* Make bars white */
+    }
+    .cart-icon {
+        margin-top: 0; /* Reset desktop margin */
+    }
+    .cart-icon svg {
+        stroke: #fff; /* Make cart icon white */
+        width: 30px;
+        height: 30px;
+    }
+
+    /* --- SLIDE-OUT MENU --- */
+    /* This shows the hidden .nav-left when your script adds the 'menu-open' class */
+    .nav-left.menu-open {
+        display: block;
+        position: absolute;
+        top: 80px; /* Position below header */
+        left: 0;
+        width: 100%;
+        background-color: white;
+        z-index: 1000;
+        border-top: 1px solid #ddd;
+    }
+    .nav-left.menu-open nav ul.menu {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 0;
+        padding: 0;
+        margin: 0;
+    }
+    .nav-left.menu-open nav ul.menu li {
+        border-bottom: 1px solid #eee;
+        margin: 0;
+    }
+    .nav-left.menu-open nav ul.menu li a {
+        display: block;
+        padding: 15px 20px;
+    }
+    .nav-left.menu-open .dropdown .submenu {
+        position: static;
+        display: none;
+        box-shadow: none;
+        background-color: #f7f7f7;
+        padding-left: 20px;
+    }
+    .nav-left.menu-open .dropdown.active .submenu {
+        display: block;
+    }
+
+    /* --- GENERAL PAGE CONTENT STACKING --- */
+    .intro-section,
+    .featured-items,
+    .seamoss-items,
+    .site-footer,
+    .form-row {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .intro-bubble,
+    .intro-gallery,
+    .featured-card,
+    .seamoss-card {
+        width: 90%;
+        max-width: 400px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .drinks-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    /* Add other specific mobile adjustments below */
 
 }

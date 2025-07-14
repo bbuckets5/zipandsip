@@ -3,25 +3,20 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Freshly Squeezed Lemonades - Zip and Sip</title>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Poppins:wght@700&display=swap" rel="stylesheet" />
+    <title>Tropical Blends - Zip and Sip</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400..700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css" />
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <header class="top-nav">
-        <div class="logo">
-            <img src="Images/logo.png" alt="Zip and Sip" />
-            <span class="brand-name">S&S Zip and Sip Natural Drinks and Juices</span>
-        </div>
-
-        <div class="nav-right">
+        <div class="nav-left">
             <nav>
-                <ul class="menu" id="main-mobile-menu">
+                <ul class="menu">
                     <li><a href="index.html">Home</a></li>
                     <li class="dropdown">
-                        <a href="#">Menu / Drinks ▼</a>
+                        <a href="#">Products ▼</a>
                         <ul class="submenu">
                             <li><a href="earth.html">Earth Blends</a></li>
                             <li><a href="adult.html">Adult Sips</a></li>
@@ -33,15 +28,28 @@
                     <li><a href="bookanevent.html">Book an Event</a></li>
                     <li><a href="aboutus.html">About Us</a></li>
                     <li><a href="contactus.html">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="nav-center-logo">
+            <div class="logo">
+                <img src="Images/Actuallogo.png" alt="Zip and Sip" />
+                <span class="brand-name"></span>
+            </div>
+        </div>
+
+        <div class="nav-right-icons">
+            <div id="userProfileDisplay" style="display: none;">
+                <h3>Good to see you again, <span id="displayedUserName"></span>!</h3>
+            </div>
+
+            <nav>
+                <ul class="menu">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" id="userDropdownToggle">
-                            <i class="fa-solid fa-user"></i>
+                        <a href="#" id="userDropdownToggle"> <i class="fa-solid fa-user"></i>
                         </a>
-                        <ul class="submenu" id="userDropdownMenu">
-                            <li><a href="signup.html" id="signupLink">Sign Up</a></li>
-                            <li><a href="login.html" id="loginLink">Log In</a></li>
-                            <li><a href="#" id="logoutLink" class="hidden-auth-link">Log Out</a></li>
-                        </ul>
+                        <ul class="submenu" id="userDropdownMenu"> <li><a href="signup.html" id="signupLink">Sign Up</a></li> <li><a href="login.html" id="loginLink">Log In</a></li>   <li><a href="#" id="logoutLink" class="hidden-auth-link">Log Out</a></li> </ul>
                     </li>
                 </ul>
             </nav>
@@ -62,9 +70,9 @@
             </div>
         </div>
     </header>
-
+    
     <main>
-        <div class="earth-blends">Freshly Squeezed Lemonades</div>
+        <div class="earth-blends">Tropical Blends</div>
 
         <nav class="drink-categories">
             <ul>
@@ -78,7 +86,7 @@
                 <img src="Images/CarrotPunch.png" alt="Kiwi-cucumber" />
                 <div class="drink-card-content">
                     <p class="price"><span class="dollar">$5<sup>.00</sup></span></p>
-                    <p class="drink-name">Kiwi-Cucumber Lemonade</p>
+                    <p class="drink-name">Kiwi-Cucumber</p>
                     <p class="ingredients">Kiwi, Cucumber, Lemon</p>
                 </div>
                 <button class="add-to-cart">Add to Cart</button>
@@ -88,7 +96,7 @@
                 <img src="Images/SuperGreenTea.png" alt="Watermelon-cucumber" />
                 <div class="drink-card-content">
                     <p class="price"><span class="dollar">$5<sup>.00</sup></span></p>
-                    <p class="drink-name">Watermelon-Cucumber Lemonade</p>
+                    <p class="drink-name">Watermelon-Cucumber</p>
                     <p class="ingredients">Watermelon, Cucumber, Lemon</p>
                 </div>
                 <button class="add-to-cart">Add to Cart</button>
@@ -98,7 +106,7 @@
                 <img src="Images/SuperGreenTea.png" alt="Pineapple-ginger" />
                 <div class="drink-card-content">
                     <p class="price"><span class="dollar">$5<sup>.00</sup></span></p>
-                    <p class="drink-name">Pineapple-Ginger Lemonade</p>
+                    <p class="drink-name">Pineapple-Ginger</p>
                     <p class="ingredients">Pineapple, Ginger, Lemon</p>
                 </div>
                 <button class="add-to-cart">Add to Cart</button>
@@ -108,7 +116,7 @@
                 <img src="Images/SuperGreenTea.png" alt="Mixed-berry" />
                 <div class="drink-card-content">
                     <p class="price"><span class="dollar">$5<sup>.00</sup></span></p>
-                    <p class="drink-name">Mixed-Berry Lemonade</p>
+                    <p class="drink-name">Mixed-Berry</p>
                     <p class="ingredients">Berries, Lemon</p>
                 </div>
                 <button class="add-to-cart">Add to Cart</button>
@@ -118,7 +126,7 @@
                 <img src="Images/SuperGreenTea.png" alt="Dilly" />
                 <div class="drink-card-content">
                     <p class="price"><span class="dollar">$5<sup>.00</sup></span></p>
-                    <p class="drink-name">Dilly Lemonade</p>
+                    <p class="drink-name">Dilly</p>
                     <p class="ingredients">Dilly, Lemon, blank</p>
                 </div>
                 <button class="add-to-cart">Add to Cart</button>
@@ -128,7 +136,7 @@
                 <img src="Images/SuperGreenTea.png" alt="Tamarind" />
                 <div class="drink-card-content">
                     <p class="price"><span class="dollar">$5<sup>.00</sup></span></p>
-                    <p class="drink-name">Tamarind Lemonade</p>
+                    <p class="drink-name">Tamarind</p>
                     <p class="ingredients">Tamarind, Lemon, blank</p>
                 </div>
                 <button class="add-to-cart">Add to Cart</button>
@@ -138,7 +146,7 @@
                 <img src="Images/SuperGreenTea.png" alt="Guava" />
                 <div class="drink-card-content">
                     <p class="price"><span class="dollar">$5<sup>.00</sup></span></p>
-                    <p class="drink-name">Guava Lemonade</p>
+                    <p class="drink-name">Guava</p>
                     <p class="ingredients">Guava, Lemon, blank</p>
                 </div>
                 <button class="add-to-cart">Add to Cart</button>
@@ -148,18 +156,8 @@
                 <img src="Images/SuperGreenTea.png" alt="Mango" />
                 <div class="drink-card-content">
                     <p class="price"><span class="dollar">$5<sup>.00</sup></span></p>
-                    <p class="drink-name">Mango Lemonade</p>
+                    <p class="drink-name">Mango</p>
                     <p class="ingredients">Mango, Lemon, blank</p>
-                </div>
-                <button class="add-to-cart">Add to Cart</button>
-            </div>
-
-            <div class="drink-card" data-category="16oz">
-                <img src="Images/SuperGreenTea.png" alt="Classic" />
-                <div class="drink-card-content">
-                    <p class="price"><span class="dollar">$5<sup>.00</sup></span></p>
-                    <p class="drink-name">Classic Lemonade</p>
-                    <p class="ingredients">Lemon, blank, blank</p>
                 </div>
                 <button class="add-to-cart">Add to Cart</button>
             </div>
@@ -168,7 +166,7 @@
                 <img src="Images/Systemflush.png" alt="Tamarind" />
                 <div class="drink-card-content">
                     <p class="price"><span class="dollar">$25<sup>.00</sup></span></p>
-                    <p class="drink-name">Tamarind Gallon Lemonade</p>
+                    <p class="drink-name">Tamarind Gallon</p>
                     <p class="ingredients">Tamarind, Lemon</p>
                 </div>
                 <button class="add-to-cart">Add to Cart</button>
@@ -178,7 +176,7 @@
                 <img src="Images/Systemflush.png" alt="Guava" />
                 <div class="drink-card-content">
                     <p class="price"><span class="dollar">$25<sup>.00</sup></span></p>
-                    <p class="drink-name">Guava Gallon Lemonade</p>
+                    <p class="drink-name">Guava Gallon</p>
                     <p class="ingredients">Guava, Lemon</p>
                 </div>
                 <button class="add-to-cart">Add to Cart</button>
@@ -188,7 +186,7 @@
                 <img src="Images/Systemflush.png" alt="Mango" />
                 <div class="drink-card-content">
                     <p class="price"><span class="dollar">$25<sup>.00</sup></span></p>
-                    <p class="drink-name">Mango Gallon Lemonade</p>
+                    <p class="drink-name">Mango Gallon</p>
                     <p class="ingredients">Mango, Lemon</p>
                 </div>
                 <button class="add-to-cart">Add to Cart</button>
@@ -198,7 +196,7 @@
                 <img src="Images/Systemflush.png" alt="Mixed-berry" />
                 <div class="drink-card-content">
                     <p class="price"><span class="dollar">$25<sup>.00</sup></span></p>
-                    <p class="drink-name">Mixed-Berry Gallon Lemonade</p>
+                    <p class="drink-name">Mixed-Berry Gallon</p>
                     <p class="ingredients">Berries, Lemon</p>
                 </div>
                 <button class="add-to-cart">Add to Cart</button>
@@ -208,23 +206,36 @@
                 <img src="Images/Systemflush.png" alt="Watermelon" />
                 <div class="drink-card-content">
                     <p class="price"><span class="dollar">$25<sup>.00</sup></span></p>
-                    <p class="drink-name">Watermelon Gallon Lemonade</p>
+                    <p class="drink-name">Watermelon Gallon</p>
                     <p class="ingredients">Watermelon, Lemon</p>
-                </div>
-                <button class="add-to-cart">Add to Cart</button>
-            </div>
-
-            <div class="drink-card" data-category="gallon">
-                <img src="Images/Systemflush.png" alt="classic" />
-                <div class="drink-card-content">
-                    <p class="price"><span class="dollar">$25<sup>.00</sup></span></p>
-                    <p class="drink-name">Classic Gallon Lemonade</p>
-                    <p class="ingredients">blank, Lemon</p>
                 </div>
                 <button class="add-to-cart">Add to Cart</button>
             </div>
         </section>
     </main>
+
+    <footer class="site-footer">
+        <div class="footer-left">
+            <img src="Images/Actuallogo.png" alt="S&S ZipandSip Logo" class="footer-logo" />
+            <span class="footer-brand">S&S ZipandSip Natural Drinks</span>
+        </div>
+
+        <div class="footer-center">
+            <span style="color: #1d1d1d; font-weight: 600;">Socials:</span>
+            <a href="https://www.instagram.com/p/DKCRRpZucM0/" class="footer-link" aria-label="Instagram">
+                <img src="Images/Instalogo.png" alt="Instagram" class="footer-icon" /> Instagram
+            </a>
+            <span class="divider">|</span>
+            <a href="#" class="footer-link" aria-label="Facebook">
+                <img src="Images/facebook.png" alt="Facebook" class="footer-icon" /> Facebook
+            </a>
+        </div>
+
+        <div class="footer-right">
+            <p><span style="font-weight: 600;">Phone:</span> (242) - 436 - 3391</p>
+            <p><span style="font-weight: 600;">Location:</span> Nassau, Bahamas</p>
+        </div>
+    </footer>
 
     <aside class="cart">
         <h3>Shopping Cart</h3>
@@ -235,28 +246,8 @@
     </aside>
 
     <div id="overlay"></div>
+    <div id="toast-container" class="toast-container"></div>
 
     <script src="script.js"></script>
-
-    <footer class="site-footer">
-        <div class="footer-left">
-            <img src="Images/logo.png" alt="S&S ZipandSip Logo" class="footer-logo" />
-            <span class="footer-brand">S&S ZipandSip Natural Drinks</span>
-        </div>
-        <div class="footer-center">
-            <span style="color: #1d1d1d; font-weight: 600;">Socials:</span>
-            <a href="#" class="footer-link" aria-label="Instagram">
-                <img src="Images/instagram.png" alt="Instagram" class="footer-icon" /> Instagram
-            </a>
-            <span class="divider">|</span>
-            <a href="#" class="footer-link" aria-label="Facebook">
-                <img src="Images/facebook.png" alt="Facebook" class="footer-icon" /> Facebook
-            </a>
-        </div>
-        <div class="footer-right">
-            <p><span style="font-weight: 600;">Phone:</span> (242) - 436 - 3391</p>
-            <p><span style="font-weight: 600;">Location:</span> Nassau, Bahamas</p>
-        </div>
-    </footer>
 </body>
 </html>

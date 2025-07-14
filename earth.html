@@ -4,24 +4,19 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Earth Blends - Zip and Sip</title>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Poppins:wght@700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400..700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css" />
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <header class="top-nav">
-        <div class="logo">
-            <img src="Images/logo.png" alt="Zip and Sip" />
-            <span class="brand-name">S&S Zip and Sip Natural Drinks and Juices</span>
-        </div>
-
-        <div class="nav-right">
+        <div class="nav-left">
             <nav>
-                <ul class="menu" id="main-mobile-menu">
+                <ul class="menu">
                     <li><a href="index.html">Home</a></li>
                     <li class="dropdown">
-                        <a href="#">Menu / Drinks ▼</a>
+                        <a href="#">Products ▼</a>
                         <ul class="submenu">
                             <li><a href="earth.html">Earth Blends</a></li>
                             <li><a href="adult.html">Adult Sips</a></li>
@@ -33,15 +28,28 @@
                     <li><a href="bookanevent.html">Book an Event</a></li>
                     <li><a href="aboutus.html">About Us</a></li>
                     <li><a href="contactus.html">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="nav-center-logo">
+            <div class="logo">
+                <img src="Images/Actuallogo.png" alt="Zip and Sip" />
+                <span class="brand-name"></span>
+            </div>
+        </div>
+
+        <div class="nav-right-icons">
+            <div id="userProfileDisplay" style="display: none;">
+                <h3>Good to see you again, <span id="displayedUserName"></span>!</h3>
+            </div>
+
+            <nav>
+                <ul class="menu">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" id="userDropdownToggle">
-                            <i class="fa-solid fa-user"></i>
+                        <a href="#" id="userDropdownToggle"> <i class="fa-solid fa-user"></i>
                         </a>
-                        <ul class="submenu" id="userDropdownMenu">
-                            <li><a href="signup.html" id="signupLink">Sign Up</a></li>
-                            <li><a href="login.html" id="loginLink">Log In</a></li>
-                            <li><a href="#" id="logoutLink" class="hidden-auth-link">Log Out</a></li>
-                        </ul>
+                        <ul class="submenu" id="userDropdownMenu"> <li><a href="signup.html" id="signupLink">Sign Up</a></li> <li><a href="login.html" id="loginLink">Log In</a></li>   <li><a href="#" id="logoutLink" class="hidden-auth-link">Log Out</a></li> </ul>
                     </li>
                 </ul>
             </nav>
@@ -62,257 +70,256 @@
             </div>
         </div>
     </header>
+    
+    <main>
+        <div class="earth-blends">Earth Blends</div>
 
-    <div id="page-wrapper">
-        <main>
-            <div class="earth-blends">Earth Blends</div>
+        <nav class="drink-categories">
+            <ul>
+                <li class="category active" data-category="8oz">8 Ounce</li>
+                <li class="category" data-category="12oz">12 Ounce</li>
+                <li class="category" data-category="16oz">16 Ounce</li>
+                <li class="category" data-category="gallon">Gallon Bottle</li>
+                <li class="category" data-category="flavored-seamoss">Flavored Seamoss</li>
+            </ul>
+        </nav>
 
-            <nav class="drink-categories">
-                <ul>
-                    <li class="category active" data-category="8oz">8 Ounce</li>
-                    <li class="category" data-category="12oz">12 Ounce</li>
-                    <li class="category" data-category="16oz">16 Ounce</li>
-                    <li class="category" data-category="gallon">Gallon Bottle</li>
-                    <li class="category" data-category="flavored-seamoss">Flavored Seamoss</li>
-                </ul>
-            </nav>
-
-            <section class="drinks-grid">
-                <div class="drink-card" data-category="8oz">
-                    <img src="Images/8ozPineapple.png" alt="Pineapple Me" />
-                    <div class="drink-card-content">
-                        <p class="price"><span class="dollar">$5<sup>.00</sup></span></p>
-                        <p class="drink-name">"Pineapple Me" Immunity Booster</p>
-                        <p class="ingredients">Pineapple, cucumber, ginger</p>
-                    </div>
-                    <button class="add-to-cart">Add to Cart</button>
+        <section class="drinks-grid">
+            <div class="drink-card" data-category="8oz">
+                <img src="Images/8ozPineapple.png" alt="Pineapple Me" />
+                <div class="drink-card-content">
+                    <p class="price"><span class="dollar">$5<sup>.00</sup></span></p>
+                    <p class="drink-name">"Pineapple Me" Immunity Booster</p>
+                    <p class="ingredients">Pineapple, cucumber, ginger</p>
                 </div>
-
-                <div class="drink-card" data-category="8oz">
-                    <img src="Images/8ozMorningGlow.png" alt="Morning Glow" />
-                    <div class="drink-card-content">
-                        <p class="price"><span class="dollar">$5<sup>.00</sup></span></p>
-                        <p class="drink-name">"Morning Glow" Immunity Booster</p>
-                        <p class="ingredients">Celery, Kale, Ginger</p>
-                    </div>
-                    <button class="add-to-cart">Add to Cart</button>
-                </div>
-
-                <div class="drink-card" data-category="8oz">
-                    <img src="Images/BeetsandGinger.png" alt="Beets & Ginger" />
-                    <div class="drink-card-content">
-                        <p class="price"><span class="dollar">$5<sup>.00</sup></span></p>
-                        <p class="drink-name">"Beets & Ginger" Immunity Booster</p>
-                        <p class="ingredients">Beets, Ginger</p>
-                    </div>
-                    <button class="add-to-cart">Add to Cart</button>
-                </div>
-
-                <div class="drink-card" data-category="8oz">
-                    <img src="Images/8ozMorningGlow.png" alt="Clean Me Green" />
-                    <div class="drink-card-content">
-                        <p class="price"><span class="dollar">$5<sup>.00</sup></span></p>
-                        <p class="drink-name">"Clean Me Green" Immunity Booster</p>
-                        <p class="ingredients">Kale, Green apple, ginger</p>
-                    </div>
-                    <button class="add-to-cart">Add to Cart</button>
-                </div>
-
-                <div class="drink-card" data-category="12oz">
-                    <img src="Images/CarrotPunch.png" alt="Carrot Punch" />
-                    <div class="drink-card-content">
-                        <p class="price"><span class="dollar">$5<sup>.00</sup></span></p>
-                        <p class="drink-name">"Carrot Punch"</p>
-                        <p class="ingredients">Carrots, blank, blank</p>
-                    </div>
-                    <button class="add-to-cart">Add to Cart</button>
-                </div>
-
-                <div class="drink-card" data-category="16oz">
-                    <img src="Images/SuperGreenTea.png" alt="Super Green Tea" />
-                    <div class="drink-card-content">
-                        <p class="price"><span class="dollar">$5<sup>.00</sup></span></p>
-                        <p class="drink-name">"Super Green Tea"</p>
-                        <p class="ingredients">Leaf, Leaf, Leaf</p>
-                    </div>
-                    <button class="add-to-cart">Add to Cart</button>
-                </div>
-
-                <div class="drink-card" data-category="16oz">
-                    <img src="Images/SuperGreenTea.png" alt="Pear Leaf Bahamina Tea " />
-                    <div class="drink-card-content">
-                        <p class="price"><span class="dollar">$5<sup>.00</sup></span></p>
-                        <p class="drink-name">Pear Leaf "Bahamian" Tea</p>
-                        <p class="ingredients">Leaf, Leaf, Leaf</p>
-                    </div>
-                    <button class="add-to-cart">Add to Cart</button>
-                </div>
-
-                <div class="drink-card" data-category="16oz">
-                    <img src="Images/SuperGreenTea.png" alt="Fevergrass and ginger" />
-                    <div class="drink-card-content">
-                        <p class="price"><span class="dollar">$5<sup>.00</sup></span></p>
-                        <p class="drink-name">Fevergrass and Ginger "Bahamian" Tea</p>
-                        <p class="ingredients">blank, blank, blank</p>
-                    </div>
-                    <button class="add-to-cart">Add to Cart</button>
-                </div>
-
-                <div class="drink-card" data-category="16oz">
-                    <img src="Images/SuperGreenTea.png" alt="Soursop Bahamian Tea" />
-                    <div class="drink-card-content">
-                        <p class="price"><span class="dollar">$5<sup>.00</sup></span></p>
-                        <p class="drink-name">Soursop "Bahamian" Tea</p>
-                        <p class="ingredients">blank, blank, blank</p>
-                    </div>
-                    <button class="add-to-cart">Add to Cart</button>
-                </div>
-
-                <div class="drink-card" data-category="gallon">
-                    <img src="Images/Systemflush.png" alt="Blood Builder" />
-                    <div class="drink-card-content">
-                        <p class="price"><span class="dollar">$45<sup>.00</sup></span></p>
-                        <p class="drink-name">"Blood Builder" Gallon Drink</p>
-                        <p class="ingredients">blank, blank, blank</p>
-                    </div>
-                    <button class="add-to-cart">Add to Cart</button>
-                </div>
-
-                <div class="drink-card" data-category="gallon">
-                    <img src="Images/Systemflush.png" alt="System Flush" />
-                    <div class="drink-card-content">
-                        <p class="price"><span class="dollar">$45<sup>.00</sup></span></p>
-                        <p class="drink-name">"System Flush" Gallon Drink</p>
-                        <p class="ingredients">blank, blank, blank</p>
-                    </div>
-                    <button class="add-to-cart">Add to Cart</button>
-                </div>
-
-                <div class="drink-card" data-category="gallon">
-                    <img src="Images/TeaGallon.png" alt="Super Green Tea" />
-                    <div class="drink-card-content">
-                        <p class="price"><span class="dollar">$45<sup>.00</sup></span></p>
-                        <p class="drink-name">Super Green "Bahamian" Tea Gallon</p>
-                        <p class="ingredients">blank, blank, blank</p>
-                    </div>
-                    <button class="add-to-cart">Add to Cart</button>
-                </div>
-
-                <div class="drink-card" data-category="gallon">
-                    <img src="Images/TeaGallon.png" alt="Pear Leaf Bahamina Tea " />
-                    <div class="drink-card-content">
-                        <p class="price"><span class="dollar">$45<sup>.00</sup></span></p>
-                        <p class="drink-name">Pear Leaf "Bahamian" Tea Gallon</p>
-                        <p class="ingredients">Leaf, Leaf, Leaf</p>
-                    </div>
-                    <button class="add-to-cart">Add to Cart</button>
-                </div>
-
-                <div class="drink-card" data-category="gallon">
-                    <img src="Images/TeaGallon.png" alt="Fevergrass and ginger" />
-                    <div class="drink-card-content">
-                        <p class="price"><span class="dollar">$45<sup>.00</sup></span></p>
-                        <p class="drink-name">Fevergrass and Ginger "Bahamian" Tea Gallon</p>
-                        <p class="ingredients">blank, blank, blank</p>
-                    </div>
-                    <button class="add-to-cart">Add to Cart</button>
-                </div>
-
-                <div class="drink-card" data-category="gallon">
-                    <img src="Images/TeaGallon.png" alt="Soursop Bahamian Tea" />
-                    <div class="drink-card-content">
-                        <p class="price"><span class="dollar">$45<sup>.00</sup></span></p>
-                        <p class="drink-name">Soursop "Bahamian" Tea Gallon</p>
-                        <p class="ingredients">blank, blank, blank</p>
-                    </div>
-                    <button class="add-to-cart">Add to Cart</button>
-                </div>
-
-                <div class="drink-card" data-category="gallon">
-                    <img src="Images/TeaGallon.png" alt="Moringa Bahamian Tea" />
-                    <div class="drink-card-content">
-                        <p class="price"><span class="dollar">$45<sup>.00</sup></span></p>
-                        <p class="drink-name">Moringa "Bahamian" Tea Gallon</p>
-                        <p class="ingredients">blank, blank, blank</p>
-                    </div>
-                    <button class="add-to-cart">Add to Cart</button>
-                </div>
-
-                <div class="drink-card" data-category="gallon">
-                    <img src="Images/Systemflush.png" alt="Anyytime Gallon" />
-                    <div class="drink-card-content">
-                        <p class="price"><span class="dollar">$45<sup>.00</sup></span></p>
-                        <p class="drink-name">"Anytime" Gallon Drink</p>
-                        <p class="ingredients">blank, blank, blank</p>
-                    </div>
-                    <button class="add-to-cart">Add to Cart</button>
-                </div>
-
-                <div class="drink-card" data-category="flavored-seamoss">
-                    <img src="Images/Gingerseamoss.png" alt="Ginger seamoss" />
-                    <div class="drink-card-content">
-                        <p class="price"><span class="dollar">$20<sup>.00</sup></span></p>
-                        <p class="drink-name">Ginger Seamoss</p>
-                        <p class="ingredients">Ginger, Seamoss</p>
-                    </div>
-                    <button class="add-to-cart">Add to Cart</button>
-                </div>
-
-                <div class="drink-card" data-category="flavored-seamoss">
-                    <img src="Images/Mangoseamoss.png" alt="Mango seamoss" />
-                    <div class="drink-card-content">
-                        <p class="price"><span class="dollar">$20<sup>.00</sup></span></p>
-                        <p class="drink-name">Mango Seamoss</p>
-                        <p class="ingredients">Mango, Seamoss</p>
-                    </div>
-                    <button class="add-to-cart">Add to Cart</button>
-                </div>
-
-                <div class="drink-card" data-category="flavored-seamoss">
-                    <img src="Images/Soursopseamoss.png" alt="Soursop seamoss" />
-                    <div class="drink-card-content">
-                        <p class="price"><span class="dollar">$20<sup>.00</sup></span></p>
-                        <p class="drink-name">Soursop Seamoss</p>
-                        <p class="ingredients">Soursop, Seamoss</p>
-                    </div>
-                    <button class="add-to-cart">Add to Cart</button>
-                </div>
-
-                <div class="drink-card" data-category="flavored-seamoss">
-                    <img src="Images/BerrySeamoss.png" alt="Berry seamoss" />
-                    <div class="drink-card-content">
-                        <p class="price"><span class="dollar">$20<sup>.00</sup></span></p>
-                        <p class="drink-name">Berry Seamoss</p>
-                        <p class="ingredients">Berries, Seamoss</p>
-                    </div>
-                    <button class="add-to-cart">Add to Cart</button>
-                </div>
-            </section>
-        </main>
-
-        <footer class="site-footer">
-            <div class="footer-left">
-                <img src="Images/logo.png" alt="S&S ZipandSip Logo" class="footer-logo" />
-                <span class="footer-brand">S&S ZipandSip Natural Drinks</span>
+                <button class="add-to-cart">Add to Cart</button>
             </div>
 
-            <div class="footer-center">
-                <span style="color: #1d1d1d; font-weight: 600;">Socials:</span>
-                <a href="#" class="footer-link" aria-label="Instagram">
-                    <img src="Images/instagram.png" alt="Instagram" class="footer-icon" /> Instagram
-                </a>
-                <span class="divider">|</span>
-                <a href="#" class="footer-link" aria-label="Facebook">
-                    <img src="Images/facebook.png" alt="Facebook" class="footer-icon" /> Facebook
-                </a>
+            <div class="drink-card" data-category="8oz">
+                <img src="Images/8ozMorningGlow.png" alt="Morning Glow" />
+                <div class="drink-card-content">
+                    <p class="price"><span class="dollar">$5<sup>.00</sup></span></p>
+                    <p class="drink-name">"Morning Glow" Immunity Booster</p>
+                    <p class="ingredients">Celery, Kale, Ginger</p>
+                </div>
+                <button class="add-to-cart">Add to Cart</button>
             </div>
 
-            <div class="footer-right">
-                <p><span style="font-weight: 600;">Phone:</span> (242) - 436 - 3391</p>
-                <p><span style="font-weight: 600;">Location:</span> Nassau, Bahamas</p>
+            <div class="drink-card" data-category="8oz">
+                <img src="Images/BeetsandGinger.png" alt="Beets & Ginger" />
+                <div class="drink-card-content">
+                    <p class="price"><span class="dollar">$5<sup>.00</sup></span></p>
+                    <p class="drink-name">"Beets & Ginger" Immunity Booster</p>
+                    <p class="ingredients">Beets, Ginger</p>
+                </div>
+                <button class="add-to-cart">Add to Cart</button>
             </div>
-        </footer>
-    </div>
+
+            <div class="drink-card" data-category="8oz">
+                <img src="Images/8ozMorningGlow.png" alt="Clean Me Green" />
+                <div class="drink-card-content">
+                    <p class="price"><span class="dollar">$5<sup>.00</sup></span></p>
+                    <p class="drink-name">"Clean Me Green" Immunity Booster</p>
+                    <p class="ingredients">Kale, Green apple, ginger</p>
+                </div>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+
+            <div class="drink-card" data-category="12oz">
+                <img src="Images/CarrotPunch.png" alt="Carrot Punch" />
+                <div class="drink-card-content">
+                    <p class="price"><span class="dollar">$5<sup>.00</sup></span></p>
+                    <p class="drink-name">"Carrot Punch"</p>
+                    <p class="ingredients">Carrots, blank, blank</p>
+                </div>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+
+            <div class="drink-card" data-category="16oz">
+                <img src="Images/SuperGreenTea.png" alt="Super Green Tea" />
+                <div class="drink-card-content">
+                    <p class="price"><span class="dollar">$5<sup>.00</sup></span></p>
+                    <p class="drink-name">"Super Green Tea"</p>
+                    <p class="ingredients">Leaf, Leaf, Leaf</p>
+                </div>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+
+            <div class="drink-card" data-category="16oz">
+                <img src="Images/SuperGreenTea.png" alt="Pear Leaf Bahamina Tea " />
+                <div class="drink-card-content">
+                    <p class="price"><span class="dollar">$5<sup>.00</sup></span></p>
+                    <p class="drink-name">Pear Leaf "Bahamian" Tea</p>
+                    <p class="ingredients">Leaf, Leaf, Leaf</p>
+                </div>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+
+            <div class="drink-card" data-category="16oz">
+                <img src="Images/SuperGreenTea.png" alt="Fevergrass and ginger" />
+                <div class="drink-card-content">
+                    <p class="price"><span class="dollar">$5<sup>.00</sup></span></p>
+                    <p class="drink-name">Fevergrass and Ginger "Bahamian" Tea</p>
+                    <p class="ingredients">blank, blank, blank</p>
+                </div>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+
+            <div class="drink-card" data-category="16oz">
+                <img src="Images/SuperGreenTea.png" alt="Soursop Bahamian Tea" />
+                <div class="drink-card-content">
+                    <p class="price"><span class="dollar">$5<sup>.00</sup></span></p>
+                    <p class="drink-name">Soursop "Bahamian" Tea</p>
+                    <p class="ingredients">blank, blank, blank</p>
+                </div>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+
+            <div class="drink-card" data-category="gallon">
+                <img src="Images/Systemflush.png" alt="Blood Builder" />
+                <div class="drink-card-content">
+                    <p class="price"><span class="dollar">$45<sup>.00</sup></span></p>
+                    <p class="drink-name">"Blood Builder" Gallon Drink</p>
+                    <p class="ingredients">blank, blank, blank</p>
+                </div>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+
+            <div class="drink-card" data-category="gallon">
+                <img src="Images/Systemflush.png" alt="System Flush" />
+                <div class="drink-card-content">
+                    <p class="price"><span class="dollar">$45<sup>.00</sup></span></p>
+                    <p class="drink-name">"System Flush" Gallon Drink</p>
+                    <p class="ingredients">blank, blank, blank</p>
+                </div>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+
+            <div class="drink-card" data-category="gallon">
+                <img src="Images/TeaGallon.png" alt="Super Green Tea" />
+                <div class="drink-card-content">
+                    <p class="price"><span class="dollar">$45<sup>.00</sup></span></p>
+                    <p class="drink-name">Super Green "Bahamian" Tea Gallon</p>
+                    <p class="ingredients">blank, blank, blank</p>
+                </div>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+
+            <div class="drink-card" data-category="gallon">
+                <img src="Images/TeaGallon.png" alt="Pear Leaf Bahamina Tea " />
+                <div class="drink-card-content">
+                    <p class="price"><span class="dollar">$45<sup>.00</sup></span></p>
+                    <p class="drink-name">Pear Leaf "Bahamian" Tea Gallon</p>
+                    <p class="ingredients">Leaf, Leaf, Leaf</p>
+                </div>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+
+            <div class="drink-card" data-category="gallon">
+                <img src="Images/TeaGallon.png" alt="Fevergrass and ginger" />
+                <div class="drink-card-content">
+                    <p class="price"><span class="dollar">$45<sup>.00</sup></span></p>
+                    <p class="drink-name">Fevergrass and Ginger "Bahamian" Tea Gallon</p>
+                    <p class="ingredients">blank, blank, blank</p>
+                </div>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+
+            <div class="drink-card" data-category="gallon">
+                <img src="Images/TeaGallon.png" alt="Soursop Bahamian Tea" />
+                <div class="drink-card-content">
+                    <p class="price"><span class="dollar">$45<sup>.00</sup></span></p>
+                    <p class="drink-name">Soursop "Bahamian" Tea Gallon</p>
+                    <p class="ingredients">blank, blank, blank</p>
+                </div>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+
+            <div class="drink-card" data-category="gallon">
+                <img src="Images/TeaGallon.png" alt="Moringa Bahamian Tea" />
+                <div class="drink-card-content">
+                    <p class="price"><span class="dollar">$45<sup>.00</sup></span></p>
+                    <p class="drink-name">Moringa "Bahamian" Tea Gallon</p>
+                    <p class="ingredients">blank, blank, blank</p>
+                </div>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+
+            <div class="drink-card" data-category="gallon">
+                <img src="Images/Systemflush.png" alt="Anyytime Gallon" />
+                <div class="drink-card-content">
+                    <p class="price"><span class="dollar">$45<sup>.00</sup></span></p>
+                    <p class="drink-name">"Anytime" Gallon Drink</p>
+                    <p class="ingredients">blank, blank, blank</p>
+                </div>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+
+            <div class="drink-card" data-category="flavored-seamoss">
+                <img src="Images/Gingerseamoss.png" alt="Ginger seamoss" />
+                <div class="drink-card-content">
+                    <p class="price"><span class="dollar">$20<sup>.00</sup></span></p>
+                    <p class="drink-name">Ginger Seamoss</p>
+                    <p class="ingredients">Ginger, Seamoss</p>
+                </div>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+
+            <div class="drink-card" data-category="flavored-seamoss">
+                <img src="Images/Mangoseamoss.png" alt="Mango seamoss" />
+                <div class="drink-card-content">
+                    <p class="price"><span class="dollar">$20<sup>.00</sup></span></p>
+                    <p class="drink-name">Mango Seamoss</p>
+                    <p class="ingredients">Mango, Seamoss</p>
+                </div>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+
+            <div class="drink-card" data-category="flavored-seamoss">
+                <img src="Images/Soursopseamoss.png" alt="Soursop seamoss" />
+                <div class="drink-card-content">
+                    <p class="price"><span class="dollar">$20<sup>.00</sup></span></p>
+                    <p class="drink-name">Soursop Seamoss</p>
+                    <p class="ingredients">Soursop, Seamoss</p>
+                </div>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+
+            <div class="drink-card" data-category="flavored-seamoss">
+                <img src="Images/BerrySeamoss.png" alt="Berry seamoss" />
+                <div class="drink-card-content">
+                    <p class="price"><span class="dollar">$20<sup>.00</sup></span></p>
+                    <p class="drink-name">Berry Seamoss</p>
+                    <p class="ingredients">Berries, Seamoss</p>
+                </div>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-left">
+            <img src="Images/Actuallogo.png" alt="S&S ZipandSip Logo" class="footer-logo" />
+            <span class="footer-brand">S&S ZipandSip Natural Drinks</span>
+        </div>
+
+        <div class="footer-center">
+            <span style="color: #1d1d1d; font-weight: 600;">Socials:</span>
+            <a href="https://www.instagram.com/p/DKCRRpZucM0/" class="footer-link" aria-label="Instagram">
+                <img src="Images/Instalogo.png" alt="Instagram" class="footer-icon" /> Instagram
+            </a>
+            <span class="divider">|</span>
+            <a href="#" class="footer-link" aria-label="Facebook">
+                <img src="Images/facebook.png" alt="Facebook" class="footer-icon" /> Facebook
+            </a>
+        </div>
+
+        <div class="footer-right">
+            <p><span style="font-weight: 600;">Phone:</span> (242) - 436 - 3391</p>
+            <p><span style="font-weight: 600;">Location:</span> Nassau, Bahamas</p>
+        </div>
+    </footer>
+
     <aside class="cart">
         <h3>Shopping Cart</h3>
         <div id="cart-items" class="cart-items">
@@ -322,6 +329,7 @@
     </aside>
 
     <div id="overlay"></div>
+    <div id="toast-container" class="toast-container"></div>
 
     <script src="script.js"></script>
 </body>
