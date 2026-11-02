@@ -1,0 +1,56 @@
+@import "tailwindcss";
+
+@theme {
+  --color-cream: #faefe2;
+  --color-sand: #f3e6d4;
+  --color-leaf: #2f3a1a;
+  --color-fresh: #6b9751;
+  --color-sunset: #d96d30;
+  --color-coral: #d66753;
+  --color-gold: #e9c969;
+
+  --font-display: var(--font-fredoka);
+  --font-body: var(--font-dm-sans);
+}
+
+body {
+  background: var(--color-cream);
+  color: var(--color-leaf);
+  font-family: var(--font-body);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+}
+
+@keyframes slowzoom {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.12);
+  }
+}
+
+.slowzoom {
+  animation: slowzoom 20s ease-out forwards;
+}
+
+@keyframes glide {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.glide {
+  animation: glide 45s linear infinite;
+}
+
+.glide-wrap:hover .glide {
+  animation-play-state: paused;
+}
